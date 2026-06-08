@@ -73,7 +73,7 @@ Strategy: get a minimal app deployed to Render *first* (hello-world + basic test
 - [x] Responsive check at mobile width for header, tabs, and modal — checked at 390px: header stacks cleanly, tabs wrap to two rows without overlap, and the modal renders full-width and scrollable with all fields legible
 - [x] **Tests**: none new — this is a visual pass; reran the existing system specs to confirm styling changes haven't broken any selectors/assertions (all green)
 - [x] Commit + push
-
+- [x] add A component holding a wide background image and a link to video. use the component wich current campaign banner image and this:   https://www.youtube.com/watch?v=4Z_xXXR3ddU    video — already built as `campaigns/_media_banner` (see `docs/BUGFIXES.md`'s Low-severity entry on the design pass): a wide `cover_image_url` background image with a centered "watch the video" link/button opening `Campaign#video_url` in a new tab; seeded on הגן הכתום with the linked YouTube video
 ## 9. README
 - [ ] How to run locally: Ruby/Rails/Postgres versions, `bundle install`, `rails db:setup`, `bin/rails server`
 - [ ] Key decisions & trade-offs and *why*: Hotwire over SPA, Postgres everywhere, DB-backed donation options with per-amount messaging, enum-based frequency/display-preference, pending+paid counting toward progress, self-hosted cover image, full tab bar with placeholders
