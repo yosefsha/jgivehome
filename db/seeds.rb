@@ -27,6 +27,11 @@ orange_garden = Campaign.find_or_create_by!(slug: "orange-garden") do |campaign|
   campaign.goal_amount = 5_000_000
 end
 
+# Backfill for rows created before `video_url` existed on the campaigns table —
+# find_or_create_by!'s block only runs on creation, so an already-seeded
+# production row would otherwise keep a NULL video_url forever.
+orange_garden.update!(video_url: "https://www.youtube.com/watch?v=4Z_xXXR3ddU") if orange_garden.video_url.blank?
+
 [
   { amount: 180, label: "נטיעת עץ" },
   { amount: 360, label: "נטיעת 2 עצים", featured: true },
