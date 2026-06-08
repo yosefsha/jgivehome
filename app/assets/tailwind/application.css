@@ -1,1 +1,40 @@
 @import "tailwindcss";
+
+/* Campaign video embed: clicking the play button switches the wrapping
+   container into "playing" mode, popping the video up at its natural 16:9
+   ratio over a grey backdrop that dims the rest of the page (see ADR-007-
+   adjacent design discussion — matches the reference site's video lightbox). */
+.video-embed__player {
+  display: none;
+}
+
+.video-embed--playing .video-embed__player {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.video-embed__backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgb(17 24 39 / 0.7);
+}
+
+.video-embed__frame {
+  position: relative;
+  width: 100%;
+  max-width: 48rem;
+  aspect-ratio: 16 / 9;
+}
+
+.video-embed__frame iframe {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 0.5rem;
+}

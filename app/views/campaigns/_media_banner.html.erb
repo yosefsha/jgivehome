@@ -2,7 +2,7 @@
     reused for any campaign that has a cover image and a YouTube video. Clicking
     the button swaps the overlay for a playing embedded iframe in place (a
     click-to-load facade — the embed only loads once the visitor opts in). %>
-<div class="relative h-64 overflow-hidden"
+<div class="video-embed relative h-64 overflow-hidden"
      <% if video_embed_url.present? %>data-controller="video-embed" data-video-embed-embed-url-value="<%= video_embed_url %>"<% end %>>
   <img src="<%= image_url %>" alt="<%= image_alt %>" class="absolute inset-0 h-full w-full object-cover">
 
@@ -18,5 +18,10 @@
         <span class="text-sm font-semibold text-gray-800"></span>
       </span>
     </button>
+
+    <div class="video-embed__player">
+      <div class="video-embed__backdrop"></div>
+      <div class="video-embed__frame" data-video-embed-target="frame"></div>
+    </div>
   <% end %>
 </div>
