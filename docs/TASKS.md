@@ -5,17 +5,17 @@ Concrete, commit-sized tasks derived from `docs/assignment.md` and the planning 
 Strategy: get a minimal app deployed to Render *first* (hello-world + basic test + live URL), so the deploy pipeline is proven early and every later feature just needs `git push` to go live.
 
 ## 0. Environment setup
-- [ ] Install rbenv + ruby-build via Homebrew; install current-stable Ruby (3.3.x); set as the local Ruby version for this project (system Ruby is 2.6, too old for Rails 8)
-- [ ] Install Rails 8 (`gem install rails`)
-- [ ] Confirm local Postgres 14 (already installed via Homebrew) is running; create a dev role if needed
+- [x] Install rbenv + ruby-build via Homebrew; install current-stable Ruby (3.3.x); set as the local Ruby version for this project (system Ruby is 2.6, too old for Rails 8)
+- [x] Install Rails 8 (`gem install rails`)
+- [x] Confirm local Postgres 14 (already installed via Homebrew) is running; create a dev role if needed
 
 ## 1. Hello world scaffold + basic test + first deploy
-- [ ] `rails new . --database=postgresql --css=tailwind` (Rails 8 ships Hotwire/Turbo/Stimulus by default)
-- [ ] Configure `config/database.yml` for local Postgres; run `rails db:create`
-- [ ] Add a trivial `HomeController#index` route + view ("hello world") so there's something to see and deploy
-- [ ] Add RSpec + FactoryBot (`rspec-rails`, `factory_bot_rails`); run `rails generate rspec:install`
-- [ ] Write one basic request spec (e.g. `GET / returns 200 and renders the hello text`) with orientation comments explaining how `bundle exec rspec` discovers and runs specs, the role of `rails_helper`/`spec_helper`, and the `describe`/`it`/`expect` structure — a one-time learning aid, not boilerplate to repeat per file
-- [ ] Commit: scaffold boots locally, test passes (`bundle exec rspec` green)
+- [x] `rails new . --database=postgresql --css=tailwind` (Rails 8 ships Hotwire/Turbo/Stimulus by default)
+- [x] Configure `config/database.yml` for local Postgres; run `rails db:create`
+- [x] Add a trivial `HomeController#index` route + view ("hello world") so there's something to see and deploy
+- [x] Add RSpec + FactoryBot (`rspec-rails`, `factory_bot_rails`); run `rails generate rspec:install`
+- [x] Write one basic request spec (e.g. `GET / returns 200 and renders the hello text`) with orientation comments explaining how `bundle exec rspec` discovers and runs specs, the role of `rails_helper`/`spec_helper`, and the `describe`/`it`/`expect` structure — a one-time learning aid, not boilerplate to repeat per file
+- [x] Commit: scaffold boots locally, test passes (`bundle exec rspec` green)
 - [ ] Set up Render: web service + managed Postgres, `RAILS_MASTER_KEY` as secret env var, confirm build step runs `assets:precompile`/Tailwind build
 - [ ] Deploy hello-world to Render; confirm the live URL serves the page — this proves the whole pipeline before any real feature work lands
 - [ ] Commit: deployment config (`render.yaml` or notes on dashboard config)
