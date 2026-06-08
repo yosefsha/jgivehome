@@ -1,6 +1,9 @@
 class Donation < ApplicationRecord
   belongs_to :campaign
 
+  # `enum`, not free-text or lookup tables: each is a small, fixed, code-meaningful
+  # set of states (branched on in `display_name`/views/broadcasts), so a declared
+  # integer-backed enum beats typo-prone strings or join-table overhead.
   enum :frequency, { one_time: 0, monthly: 1 }
   enum :status, { pending: 0, paid: 1, cancelled: 2 }
   enum :display_preference, { full_name: 0, first_name: 1, anonymous: 2 }

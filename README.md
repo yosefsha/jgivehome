@@ -10,6 +10,17 @@ progress live via Turbo Streams.
 
 **Live app**: https://jgivehome.onrender.com
 
+## Key decisions (ADRs)
+
+Notable architectural decisions, with the trade-offs behind them, are recorded
+in `docs/adr/`:
+
+* [ADR-001: Solid Cache/Queue/Cable tables live in the primary database, not separate database configs](docs/adr/ADR-001-solid-tables-share-primary-database.md)
+* [ADR-003: Postgres for every environment and every Rails 8 "solid" subsystem](docs/adr/ADR-003-postgres-everywhere.md)
+* [ADR-006: `Campaign#raised_amount` counts `pending` *and* `paid` donations, not just `paid`](docs/adr/ADR-006-pending-and-paid-count-toward-progress.md)
+* [ADR-007: Campaign cover images are static files in `public/images/`, not Active Storage](docs/adr/ADR-007-self-hosted-cover-image.md)
+* [ADR-008: Render all six reference tabs, with "coming soon" placeholders for out-of-scope ones](docs/adr/ADR-008-full-tab-bar-with-placeholders.md)
+
 ## Running locally
 
 Requirements: Ruby 3.3.11, PostgreSQL, and a `config/master.key` (ask for it,
@@ -68,31 +79,23 @@ add one (e.g. Stripe):
    deliberate stand-in for the "no payment integration" gap, not a permanent
    design choice.
 
-## Key decisions (ADRs)
-
-Notable architectural decisions, with the trade-offs behind them, are recorded
-in `docs/adr/`:
-
-* [ADR-001: Solid Cache/Queue/Cable tables live in the primary database, not separate database configs](docs/adr/ADR-001-solid-tables-share-primary-database.md)
-* [ADR-002: Hotwire (Turbo + Stimulus) over a client-side SPA for live campaign updates](docs/adr/ADR-002-hotwire-over-spa.md)
-* [ADR-003: Postgres for every environment and every Rails 8 "solid" subsystem](docs/adr/ADR-003-postgres-everywhere.md)
-* [ADR-004: Donation amount tiers are a `DonationOption` model, not hardcoded view constants](docs/adr/ADR-004-db-backed-donation-options.md)
-* [ADR-005: `frequency` and `display_preference` are Rails enums, not free-text or lookup tables](docs/adr/ADR-005-enum-based-frequency-and-display-preference.md)
-* [ADR-006: `Campaign#raised_amount` counts `pending` *and* `paid` donations, not just `paid`](docs/adr/ADR-006-pending-and-paid-count-toward-progress.md)
-* [ADR-007: Campaign cover images are static files in `public/images/`, not Active Storage](docs/adr/ADR-007-self-hosted-cover-image.md)
-* [ADR-008: Render all six reference tabs, with "coming soon" placeholders for out-of-scope ones](docs/adr/ADR-008-full-tab-bar-with-placeholders.md)
-
 ## What I'd do with more time
 
-- Populate the placeholder tabs (Ambassador board, Groups, About the charity,
-  Updates) with real content/components instead of "coming soon" panels.
-- A multi-step donation wizard closer to the reference site's flow, rather
-  than a single modal form.
-- Active Storage for campaign cover images instead of static files in
-  `public/images/` (see ADR-007) — would matter once campaigns are
-  user-managed rather than seeded.
-- Donor accounts, so a donor's `display_preference` and details could be
-  remembered rather than re-entered per donation.
+1. UI fixes — close the remaining gaps against the reference site's styling
+   and polish (spacing, type, placeholder-tab treatment) beyond the "clearly
+   resemble" bar this submission aimed for.
+2. Implement a real payment flow — wire in Stripe per the write-up above, so
+   donations can actually move from `pending` to `paid` instead of sitting
+   pending forever.
+3. Populate the placeholder tabs (Ambassador board, Groups, About the charity,
+   Updates) with real content/components instead of "coming soon" panels.
+4. A multi-step donation wizard closer to the reference site's flow, rather
+   than a single modal form.
+5. Active Storage for campaign cover images instead of static files in
+   `public/images/` (see ADR-007) — would matter once campaigns are
+   user-managed rather than seeded.
+6. Donor accounts, so a donor's `display_preference` and details could be
+   remembered rather than re-entered per donation.
 
 ## Tools, process, and AI
 
