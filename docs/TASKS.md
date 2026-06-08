@@ -42,7 +42,7 @@ Strategy: get a minimal app deployed to Render *first* (hello-world + basic test
 - [x] Header: cover image, title, raised amount, goal amount, donor count, progress bar — Tailwind-styled, `dir="rtl"` on Hebrew content (skipped a separate "tagline" field — the data model from section 2 has no such column, and the story/tabs already cover that role; adding one would be scope creep for a single subtitle line)
 - [x] "Donate" button that opens the donation modal (static button for now; modal wiring lands in section 6)
 - [x] **Tests**: request spec asserting the show page renders the campaign's title, raised amount, goal, and progress bar correctly for seeded data
-- [ ] Commit + push
+- [x] Commit + push
 
 ## 5. Tabs
 - [ ] Stimulus `tabs_controller` for switching between the 6 reference tabs: About the project, Recent donations, Ambassador board, Groups, About the charity, Updates
