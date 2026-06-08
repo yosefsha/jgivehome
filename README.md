@@ -106,4 +106,7 @@ the Solid Cache/Queue/Cable bug quickly; I steered it most on RTL/Hebrew
 styling details and on which scope to cut versus keep, where the reference
 site's actual behavior had to be the tie-breaker rather than a guess.
 
-The full chat transcript of this project is in [`transcript/`](transcript/index.html).
+The full chat transcript of this project is in [`transcript/`](transcript/index.html) —
+GitHub shows HTML as source rather than rendering it, so view it through
+[htmlpreview](https://htmlpreview.github.io/?https://github.com/yosefsha/jgivehome/blob/main/transcript/index.html)
+instead.
