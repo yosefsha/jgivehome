@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_08_095214) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_08_121605) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -22,6 +22,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_08_095214) do
     t.text "story"
     t.string "title"
     t.datetime "updated_at", null: false
+    t.string "video_url"
     t.index ["slug"], name: "index_campaigns_on_slug", unique: true
   end
 

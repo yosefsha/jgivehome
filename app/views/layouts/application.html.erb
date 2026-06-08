@@ -24,6 +24,12 @@
   </head>
 
   <body>
+    <header dir="rtl" class="fixed inset-x-0 top-0 z-10 border-b border-gray-200 bg-white/90 backdrop-blur">
+      <nav class="container mx-auto flex items-center px-5 py-4">
+        <%= link_to "Jgivehome", root_path, class: "text-lg font-bold text-orange-600" %>
+      </nav>
+    </header>
+
     <main class="container mx-auto mt-28 px-5 flex flex-col">
       <% if notice %>
         <p dir="rtl" class="mb-4 rounded-md border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800" data-turbo-cache="false">

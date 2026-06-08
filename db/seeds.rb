@@ -23,6 +23,7 @@ orange_garden = Campaign.find_or_create_by!(slug: "orange-garden") do |campaign|
   campaign.title = "הגן הכתום"
   campaign.story = orange_garden_story
   campaign.cover_image_url = "/images/background_orange.jpg"
+  campaign.video_url = "https://www.youtube.com/watch?v=4Z_xXXR3ddU"
   campaign.goal_amount = 5_000_000
 end
 
