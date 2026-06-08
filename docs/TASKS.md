@@ -35,7 +35,7 @@ Strategy: get a minimal app deployed to Render *first* (hello-world + basic test
 - [x] Seed a second, simpler fictional campaign with its own donation options (`ספריית השכונה` — neighborhood library)
 - [x] Seed 8–12 Donation records spread across both campaigns, varying frequency/status/display_preference/dedication so the page and "Recent donations" tab show realistic variety (10 seeded)
 - [x] **Tests**: a seed smoke-test (e.g. a spec or rake task assertion that `db:seed` runs cleanly and produces the expected campaign/donation counts) — optional but cheap insurance against a broken demo on first load
-- [ ] Commit + push; run `rails db:seed` against production
+- [x] Commit + push; run `rails db:seed` against production (wired into `bin/docker-entrypoint` since it's idempotent — runs automatically on every boot, no shell access needed on Render's free tier)
 
 ## 4. Campaign show page — header
 - [ ] Routes + `CampaignsController#show` (by slug or id)

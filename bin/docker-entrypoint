@@ -1,8 +1,13 @@
 #!/bin/bash -e
 
-# If running the rails server then create or migrate existing database
+# If running the rails server then create/migrate the database and ensure seed
+# data is present. db/seeds.rb uses find_or_create_by!, so reseeding on every
+# boot is a no-op once the records exist — this keeps the demo populated on
+# platforms (like Render's free tier) that don't offer a one-off shell to run
+# `rails db:seed` by hand after the first deploy.
 if [ "${@: -2:1}" == "./bin/rails" ] && [ "${@: -1:1}" == "server" ]; then
   ./bin/rails db:prepare
+  ./bin/rails db:seed
 fi
 
 exec "${@}"
