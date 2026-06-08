@@ -10,6 +10,13 @@ progress live via Turbo Streams.
 
 **Live app**: https://jgivehome.onrender.com
 
+
+
+
+https://github.com/user-attachments/assets/9def78c2-8afb-4a9b-8b3c-97a107142030
+
+
+
 ## Key decisions (ADRs)
 
 Notable architectural decisions, with the trade-offs behind them, are recorded
