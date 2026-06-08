@@ -27,3 +27,23 @@ _Avoid_: Note, comment, tribute
 **Progress**:
 The relationship between a Campaign's raised amount and its goal amount, shown as a bar/percentage. In this project, "raised" sums `pending` and `paid` donations together — a deliberate simplification documented in the README, since no donation can ever reach `paid` without a payment integration this app doesn't implement.
 _Avoid_: Raised amount (on its own — "progress" is the relationship between raised and goal, not just the raised figure)
+
+**Reference site**:
+The live Jgive campaign page (jgive.com's donation-target #159183) this app's Campaign page is modeled on — the comparison point for "does it clearly resemble the original."
+_Avoid_: jgive, original, source
+
+**Tab**:
+One of the six sections a Campaign's details are organized into: About the project, Recent donations, Ambassador board, Groups, About the charity, Updates. Some are placeholders pending content explicitly out of this project's scope.
+_Avoid_: Panel, section (on its own), page
+
+**Banner video**:
+An optional YouTube video linked from a Campaign's cover-image banner, opened in a lightbox rather than played inline.
+_Avoid_: Media, embed, player
+
+**ADR (Architecture Decision Record)**:
+A short document in `docs/adr/` recording a notable, hard-to-reverse technical decision and the trade-off behind it (e.g. why pending donations count toward Progress).
+_Avoid_: Design doc, spec, RFC
+
+**Render**:
+The hosting platform this app deploys to — a single Docker web service plus a managed Postgres database, configured via `render.yaml`.
+_Avoid_: Production, host, server

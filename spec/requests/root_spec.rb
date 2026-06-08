@@ -13,13 +13,12 @@
 #   for an exact match and `have_http_status(:ok)` is the Rails-flavored equivalent.
 require "rails_helper"
 
-RSpec.describe "Home", type: :request do
+RSpec.describe "Root", type: :request do
   describe "GET /" do
-    it "returns 200 and renders the hello text" do
+    it "redirects to the orange-garden campaign page" do
       get root_path
 
-      expect(response).to have_http_status(:ok)
-      expect(response.body).to include("Hello, world!")
+      expect(response).to redirect_to("/campaigns/orange-garden")
     end
   end
 end

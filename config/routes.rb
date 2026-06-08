@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :donations, only: [ :new, :create ]
   end
 
-  # Defines the root path route ("/")
-  root "home#index"
+  # Root redirects straight to the campaign this app is built around —
+  # there's no separate landing page to show.
+  root to: redirect("/campaigns/orange-garden")
 end
