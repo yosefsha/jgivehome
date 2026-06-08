@@ -27,7 +27,7 @@ Strategy: get a minimal app deployed to Render *first* (hello-world + basic test
 - [x] Validations: presence on required fields, numericality on amounts (> 0), email format on donor_email
 - [x] `Campaign#raised_amount` / `#progress_percentage`: sum pending + paid donations against the goal. Add a short code comment explaining *why* pending counts (no payment integration exists in this demo, so excluding pending would mean progress never visibly moves — documented further in the README)
 - [x] **Tests**: FactoryBot factories for Campaign, DonationOption, Donation; model specs covering validations, enum behavior, and `raised_amount`/`progress_percentage` (including that pending counts toward progress)
-- [ ] Commit + push (deploy auto-updates; run `rails db:migrate` against production)
+- [x] Commit + push (deploy auto-updates; run `rails db:migrate` against production)
 
 ## 3. Seed data
 - [ ] Download a copy of הגן הכתום's cover image into `public/images/`
