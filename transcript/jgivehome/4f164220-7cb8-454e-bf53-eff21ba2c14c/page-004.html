@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code transcript - page 4</title>
+    <style>
+:root { --bg-color: #f5f5f5; --card-bg: #ffffff; --user-bg: #e3f2fd; --user-border: #1976d2; --assistant-bg: #f5f5f5; --assistant-border: #9e9e9e; --thinking-bg: #fff8e1; --thinking-border: #ffc107; --thinking-text: #666; --tool-bg: #f3e5f5; --tool-border: #9c27b0; --tool-result-bg: #e8f5e9; --tool-error-bg: #ffebee; --text-color: #212121; --text-muted: #757575; --code-bg: #263238; --code-text: #aed581; }
+* { box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg-color); color: var(--text-color); margin: 0; padding: 16px; line-height: 1.6; }
+.container { max-width: 800px; margin: 0 auto; }
+h1 { font-size: 1.5rem; margin-bottom: 24px; padding-bottom: 8px; border-bottom: 2px solid var(--user-border); }
+.header-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; border-bottom: 2px solid var(--user-border); padding-bottom: 8px; margin-bottom: 24px; }
+.header-row h1 { border-bottom: none; padding-bottom: 0; margin-bottom: 0; flex: 1; min-width: 200px; }
+.message { margin-bottom: 16px; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+.message.user { background: var(--user-bg); border-left: 4px solid var(--user-border); }
+.message.assistant { background: var(--card-bg); border-left: 4px solid var(--assistant-border); }
+.message.tool-reply { background: #fff8e1; border-left: 4px solid #ff9800; }
+.tool-reply .role-label { color: #e65100; }
+.tool-reply .tool-result { background: transparent; padding: 0; margin: 0; }
+.tool-reply .tool-result .truncatable.truncated::after { background: linear-gradient(to bottom, transparent, #fff8e1); }
+.message-header { display: flex; justify-content: space-between; align-items: center; padding: 8px 16px; background: rgba(0,0,0,0.03); font-size: 0.85rem; }
+.role-label { font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.user .role-label { color: var(--user-border); }
+time { color: var(--text-muted); font-size: 0.8rem; }
+.timestamp-link { color: inherit; text-decoration: none; }
+.timestamp-link:hover { text-decoration: underline; }
+.message:target { animation: highlight 2s ease-out; }
+@keyframes highlight { 0% { background-color: rgba(25, 118, 210, 0.2); } 100% { background-color: transparent; } }
+.message-content { padding: 16px; }
+.message-content p { margin: 0 0 12px 0; }
+.message-content p:last-child { margin-bottom: 0; }
+.thinking { background: var(--thinking-bg); border: 1px solid var(--thinking-border); border-radius: 8px; padding: 12px; margin: 12px 0; font-size: 0.9rem; color: var(--thinking-text); }
+.thinking-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: #f57c00; margin-bottom: 8px; }
+.thinking p { margin: 8px 0; }
+.assistant-text { margin: 8px 0; }
+.tool-use { background: var(--tool-bg); border: 1px solid var(--tool-border); border-radius: 8px; padding: 12px; margin: 12px 0; }
+.tool-header { font-weight: 600; color: var(--tool-border); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.tool-icon { font-size: 1.1rem; }
+.tool-description { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px; font-style: italic; }
+.tool-result { background: var(--tool-result-bg); border-radius: 8px; padding: 12px; margin: 12px 0; }
+.tool-result.tool-error { background: var(--tool-error-bg); }
+.file-tool { border-radius: 8px; padding: 12px; margin: 12px 0; }
+.write-tool { background: linear-gradient(135deg, #e3f2fd 0%, #e8f5e9 100%); border: 1px solid #4caf50; }
+.edit-tool { background: linear-gradient(135deg, #fff3e0 0%, #fce4ec 100%); border: 1px solid #ff9800; }
+.file-tool-header { font-weight: 600; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; font-size: 0.95rem; }
+.write-header { color: #2e7d32; }
+.edit-header { color: #e65100; }
+.file-tool-icon { font-size: 1rem; }
+.file-tool-path { font-family: monospace; background: rgba(0,0,0,0.08); padding: 2px 8px; border-radius: 4px; }
+.file-tool-fullpath { font-family: monospace; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px; word-break: break-all; }
+.file-content { margin: 0; }
+.edit-section { display: flex; margin: 4px 0; border-radius: 4px; overflow: hidden; }
+.edit-label { padding: 8px 12px; font-weight: bold; font-family: monospace; display: flex; align-items: flex-start; }
+.edit-old { background: #fce4ec; }
+.edit-old .edit-label { color: #b71c1c; background: #f8bbd9; }
+.edit-old .edit-content { color: #880e4f; }
+.edit-new { background: #e8f5e9; }
+.edit-new .edit-label { color: #1b5e20; background: #a5d6a7; }
+.edit-new .edit-content { color: #1b5e20; }
+.edit-content { margin: 0; flex: 1; background: transparent; font-size: 0.85rem; }
+.edit-replace-all { font-size: 0.75rem; font-weight: normal; color: var(--text-muted); }
+.write-tool .truncatable.truncated::after { background: linear-gradient(to bottom, transparent, #e6f4ea); }
+.edit-tool .truncatable.truncated::after { background: linear-gradient(to bottom, transparent, #fff0e5); }
+.todo-list { background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%); border: 1px solid #81c784; border-radius: 8px; padding: 12px; margin: 12px 0; }
+.todo-header { font-weight: 600; color: #2e7d32; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; font-size: 0.95rem; }
+.todo-items { list-style: none; margin: 0; padding: 0; }
+.todo-item { display: flex; align-items: flex-start; gap: 10px; padding: 6px 0; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 0.9rem; }
+.todo-item:last-child { border-bottom: none; }
+.todo-icon { flex-shrink: 0; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-weight: bold; border-radius: 50%; }
+.todo-completed .todo-icon { color: #2e7d32; background: rgba(46, 125, 50, 0.15); }
+.todo-completed .todo-content { color: #558b2f; text-decoration: line-through; }
+.todo-in-progress .todo-icon { color: #f57c00; background: rgba(245, 124, 0, 0.15); }
+.todo-in-progress .todo-content { color: #e65100; font-weight: 500; }
+.todo-pending .todo-icon { color: #757575; background: rgba(0,0,0,0.05); }
+.todo-pending .todo-content { color: #616161; }
+pre { background: var(--code-bg); color: var(--code-text); padding: 12px; border-radius: 6px; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; margin: 8px 0; white-space: pre-wrap; word-wrap: break-word; }
+pre.json { color: #e0e0e0; }
+code { background: rgba(0,0,0,0.08); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+pre code { background: none; padding: 0; }
+.user-content { margin: 0; }
+.truncatable { position: relative; }
+.truncatable.truncated .truncatable-content { max-height: 200px; overflow: hidden; }
+.truncatable.truncated::after { content: ''; position: absolute; bottom: 32px; left: 0; right: 0; height: 60px; background: linear-gradient(to bottom, transparent, var(--card-bg)); pointer-events: none; }
+.message.user .truncatable.truncated::after { background: linear-gradient(to bottom, transparent, var(--user-bg)); }
+.message.tool-reply .truncatable.truncated::after { background: linear-gradient(to bottom, transparent, #fff8e1); }
+.tool-use .truncatable.truncated::after { background: linear-gradient(to bottom, transparent, var(--tool-bg)); }
+.tool-result .truncatable.truncated::after { background: linear-gradient(to bottom, transparent, var(--tool-result-bg)); }
+.expand-btn { display: none; width: 100%; padding: 8px 16px; margin-top: 4px; background: rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.1); border-radius: 6px; cursor: pointer; font-size: 0.85rem; color: var(--text-muted); }
+.expand-btn:hover { background: rgba(0,0,0,0.1); }
+.truncatable.truncated .expand-btn, .truncatable.expanded .expand-btn { display: block; }
+.pagination { display: flex; justify-content: center; gap: 8px; margin: 24px 0; flex-wrap: wrap; }
+.pagination a, .pagination span { padding: 5px 10px; border-radius: 6px; text-decoration: none; font-size: 0.85rem; }
+.pagination a { background: var(--card-bg); color: var(--user-border); border: 1px solid var(--user-border); }
+.pagination a:hover { background: var(--user-bg); }
+.pagination .current { background: var(--user-border); color: white; }
+.pagination .disabled { color: var(--text-muted); border: 1px solid #ddd; }
+.pagination .index-link { background: var(--user-border); color: white; }
+details.continuation { margin-bottom: 16px; }
+details.continuation summary { cursor: pointer; padding: 12px 16px; background: var(--user-bg); border-left: 4px solid var(--user-border); border-radius: 12px; font-weight: 500; color: var(--text-muted); }
+details.continuation summary:hover { background: rgba(25, 118, 210, 0.15); }
+details.continuation[open] summary { border-radius: 12px 12px 0 0; margin-bottom: 0; }
+.index-item { margin-bottom: 16px; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1); background: var(--user-bg); border-left: 4px solid var(--user-border); }
+.index-item a { display: block; text-decoration: none; color: inherit; }
+.index-item a:hover { background: rgba(25, 118, 210, 0.1); }
+.index-item-header { display: flex; justify-content: space-between; align-items: center; padding: 8px 16px; background: rgba(0,0,0,0.03); font-size: 0.85rem; }
+.index-item-number { font-weight: 600; color: var(--user-border); }
+.index-item-content { padding: 16px; }
+.index-item-stats { padding: 8px 16px 12px 32px; font-size: 0.85rem; color: var(--text-muted); border-top: 1px solid rgba(0,0,0,0.06); }
+.index-item-commit { margin-top: 6px; padding: 4px 8px; background: #fff3e0; border-radius: 4px; font-size: 0.85rem; color: #e65100; }
+.index-item-commit code { background: rgba(0,0,0,0.08); padding: 1px 4px; border-radius: 3px; font-size: 0.8rem; margin-right: 6px; }
+.commit-card { margin: 8px 0; padding: 10px 14px; background: #fff3e0; border-left: 4px solid #ff9800; border-radius: 6px; }
+.commit-card a { text-decoration: none; color: #5d4037; display: block; }
+.commit-card a:hover { color: #e65100; }
+.commit-card-hash { font-family: monospace; color: #e65100; font-weight: 600; margin-right: 8px; }
+.index-commit { margin-bottom: 12px; padding: 10px 16px; background: #fff3e0; border-left: 4px solid #ff9800; border-radius: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+.index-commit a { display: block; text-decoration: none; color: inherit; }
+.index-commit a:hover { background: rgba(255, 152, 0, 0.1); margin: -10px -16px; padding: 10px 16px; border-radius: 8px; }
+.index-commit-header { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; margin-bottom: 4px; }
+.index-commit-hash { font-family: monospace; color: #e65100; font-weight: 600; }
+.index-commit-msg { color: #5d4037; }
+.index-item-long-text { margin-top: 8px; padding: 12px; background: var(--card-bg); border-radius: 8px; border-left: 3px solid var(--assistant-border); }
+.index-item-long-text .truncatable.truncated::after { background: linear-gradient(to bottom, transparent, var(--card-bg)); }
+.index-item-long-text-content { color: var(--text-color); }
+#search-box { display: none; align-items: center; gap: 8px; }
+#search-box input { padding: 6px 12px; border: 1px solid var(--assistant-border); border-radius: 6px; font-size: 16px; width: 180px; }
+#search-box button, #modal-search-btn, #modal-close-btn { background: var(--user-border); color: white; border: none; border-radius: 6px; padding: 6px 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+#search-box button:hover, #modal-search-btn:hover { background: #1565c0; }
+#modal-close-btn { background: var(--text-muted); margin-left: 8px; }
+#modal-close-btn:hover { background: #616161; }
+#search-modal[open] { border: none; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.2); padding: 0; width: 90vw; max-width: 900px; height: 80vh; max-height: 80vh; display: flex; flex-direction: column; }
+#search-modal::backdrop { background: rgba(0,0,0,0.5); }
+.search-modal-header { display: flex; align-items: center; gap: 8px; padding: 16px; border-bottom: 1px solid var(--assistant-border); background: var(--bg-color); border-radius: 12px 12px 0 0; }
+.search-modal-header input { flex: 1; padding: 8px 12px; border: 1px solid var(--assistant-border); border-radius: 6px; font-size: 16px; }
+#search-status { padding: 8px 16px; font-size: 0.85rem; color: var(--text-muted); border-bottom: 1px solid rgba(0,0,0,0.06); }
+#search-results { flex: 1; overflow-y: auto; padding: 16px; }
+.search-result { margin-bottom: 16px; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+.search-result a { display: block; text-decoration: none; color: inherit; }
+.search-result a:hover { background: rgba(25, 118, 210, 0.05); }
+.search-result-page { padding: 6px 12px; background: rgba(0,0,0,0.03); font-size: 0.8rem; color: var(--text-muted); border-bottom: 1px solid rgba(0,0,0,0.06); }
+.search-result-content { padding: 12px; }
+.search-result mark { background: #fff59d; padding: 1px 2px; border-radius: 2px; }
+@media (max-width: 600px) { body { padding: 8px; } .message, .index-item { border-radius: 8px; } .message-content, .index-item-content { padding: 12px; } pre { font-size: 0.8rem; padding: 8px; } #search-box input { width: 120px; } #search-modal[open] { width: 95vw; height: 90vh; } }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1><a href="index.html" style="color: inherit; text-decoration: none;">Claude Code transcript</a> - page 4/5</h1>
+        
+
+<div class="pagination">
+<a href="index.html" class="index-link">Index</a>
+<a href="page-003.html">&larr; Prev</a>
+<a href="page-001.html">1</a>
+<a href="page-002.html">2</a>
+<a href="page-003.html">3</a>
+<span class="current">4</span>
+<a href="page-005.html">5</a>
+<a href="page-005.html">Next &rarr;</a>
+</div>
+
+        
+<div class="message user" id="msg-2026-06-08T17-35-18-033Z"><div class="message-header"><span class="role-label">User</span><a href="#msg-2026-06-08T17-35-18-033Z" class="timestamp-link"><time datetime="2026-06-08T17:35:18.033Z" data-timestamp="2026-06-08T17:35:18.033Z">2026-06-08T17:35:18.033Z</time></a></div><div class="message-content">
+<div class="user-content"><p>yes, commit and push</p></div></div></div>
+<div class="message assistant" id="msg-2026-06-08T17-35-20-781Z"><div class="message-header"><span class="role-label">Assistant</span><a href="#msg-2026-06-08T17-35-20-781Z" class="timestamp-link"><time datetime="2026-06-08T17:35:20.781Z" data-timestamp="2026-06-08T17:35:20.781Z">2026-06-08T17:35:20.781Z</time></a></div><div class="message-content">
+<div class="tool-use bash-tool" data-tool-id="toolu_015ZQF8yAnZ6AS5xM2wS3j61">
+<div class="tool-header"><span class="tool-icon">$</span> Bash</div><div class="truncatable"><div class="truncatable-content"><pre class="bash-command">git add README.md &amp;&amp; git commit -m &#34;Link transcript through htmlpreview since GitHub renders HTML as source&#34; &amp;&amp; git push</pre></div><button class="expand-btn">Show more</button></div>
+</div></div></div>
+<div class="message tool-reply" id="msg-2026-06-08T17-35-22-512Z"><div class="message-header"><span class="role-label">Tool reply</span><a href="#msg-2026-06-08T17-35-22-512Z" class="timestamp-link"><time datetime="2026-06-08T17:35:22.512Z" data-timestamp="2026-06-08T17:35:22.512Z">2026-06-08T17:35:22.512Z</time></a></div><div class="message-content"><div class="tool-result"><div class="truncatable"><div class="truncatable-content"><div class="commit-card"><span class="commit-card-hash">a73d804</span> Link transcript through htmlpreview since GitHub renders HTML as source</div><pre>1 file changed, 4 insertions(+), 1 deletion(-)
+To https://github.com/yosefsha/jgivehome.git
+   f76298b..a73d804  main -&gt; main</pre></div><button class="expand-btn">Show more</button></div></div></div></div>
+<div class="message assistant" id="msg-2026-06-08T17-35-24-270Z"><div class="message-header"><span class="role-label">Assistant</span><a href="#msg-2026-06-08T17-35-24-270Z" class="timestamp-link"><time datetime="2026-06-08T17:35:24.270Z" data-timestamp="2026-06-08T17:35:24.270Z">2026-06-08T17:35:24.270Z</time></a></div><div class="message-content">
+<div class="assistant-text"><p>Committed and pushed (<code>a73d804</code>).</p></div></div></div>
+<div class="message user" id="msg-2026-06-08T17-50-22-348Z"><div class="message-header"><span class="role-label">User</span><a href="#msg-2026-06-08T17-50-22-348Z" class="timestamp-link"><time datetime="2026-06-08T17:50:22.348Z" data-timestamp="2026-06-08T17:50:22.348Z">2026-06-08T17:50:22.348Z</time></a></div><div class="message-content">
+<div class="user-content"><p>move key desicions list (adrs)  to main readme.md list add to \ What I'd do with more time</p></div></div></div>
+<div class="message user" id="msg-2026-06-08T17-51-26-233Z"><div class="message-header"><span class="role-label">User</span><a href="#msg-2026-06-08T17-51-26-233Z" class="timestamp-link"><time datetime="2026-06-08T17:51:26.233Z" data-timestamp="2026-06-08T17:51:26.233Z">2026-06-08T17:51:26.233Z</time></a></div><div class="message-content">
+<div class="user-content"><p>move key desicions list (adrs)  to main readme.md list 
+ add to \ What I'd do with more time section also 
+ 1 . ui fixes. 2.implement real payment flow.</p></div></div></div>
+<div class="message assistant" id="msg-2026-06-08T17-51-33-786Z"><div class="message-header"><span class="role-label">Assistant</span><a href="#msg-2026-06-08T17-51-33-786Z" class="timestamp-link"><time datetime="2026-06-08T17:51:33.786Z" data-timestamp="2026-06-08T17:51:33.786Z">2026-06-08T17:51:33.786Z</time></a></div><div class="message-content">
+<div class="thinking"><div class="thinking-label">Thinking</div></div></div></div>
+<div class="message assistant" id="msg-2026-06-08T17-51-33-954Z"><div class="message-header"><span class="role-label">Assistant</span><a href="#msg-2026-06-08T17-51-33-954Z" class="timestamp-link"><time datetime="2026-06-08T17:51:33.954Z" data-timestamp="2026-06-08T17:51:33.954Z">2026-06-08T17:51:33.954Z</time></a></div><div class="message-content">
+<div class="tool-use" data-tool-id="toolu_01XTqydbXAB11k8Hep4jkXgA"><div class="tool-header"><span class="tool-icon">⚙</span> Read</div><div class="truncatable"><div class="truncatable-content"><pre class="json">{
+  &#34;file_path&#34;: &#34;/Users/yosefshachnovsky/dev/jgivehome/README.md&#34;
+}</pre></div><button class="expand-btn">Show more</button></div></div></div></div>
+<div class="message tool-reply" id="msg-2026-06-08T17-51-33-985Z"><div class="message-header"><span class="role-label">Tool reply</span><a href="#msg-2026-06-08T17-51-33-985Z" class="timestamp-link"><time datetime="2026-06-08T17:51:33.985Z" data-timestamp="2026-06-08T17:51:33.985Z">2026-06-08T17:51:33.985Z</time></a></div><div class="message-content"><div class="tool-result"><div class="truncatable"><div class="truncatable-content"><pre>1	# jgivehome
+2	
+3	A small Rails 8 app that reproduces the donor-facing part of a Jgive campaign
+4	donation page — browsing a campaign (story, cover image/video, goal, progress)
+5	and submitting a donation — modeled on
+6	[this live campaign](https://www.jgive.com/new/he/ils/donation-targets/159183).
+7	Payment/checkout, accounts, and admin are explicitly out of scope; submitting
+8	the donation form creates a `pending` donation and updates the campaign&#x27;s
+9	progress live via Turbo Streams.
+10	
+11	**Live app**: https://jgivehome.onrender.com
+12	
+13	## Running locally
+14	
+15	Requirements: Ruby 3.3.11, PostgreSQL, and a `config/master.key` (ask for it,
+16	or generate your own with `bin/rails credentials:edit` if you don&#x27;t need the
+17	existing seeded secrets).
+18	
+19	```bash
+20	bundle install
+21	bin/rails db:setup    # creates the DB, loads the schema, runs db/seeds.rb
+22	bin/dev               # runs the Rails server + Tailwind build/watch (see Procfile.dev)
+23	```
+24	
+25	The app seeds two campaigns — הגן הכתום (with real donation tiers and a
+26	banner video) and ספריית השכונה — plus a handful of donations, so the page
+27	isn&#x27;t empty on first load.
+28	
+29	Run the test suite with `bundle exec rspec` (model, request, and system specs;
+30	system specs use headless Chrome via Capybara).
+31	
+32	## Deploying
+33	
+34	The app deploys to [Render](https://render.com) as a Docker web service plus a
+35	single managed Postgres database, configured via `render.yaml` (Render reads
+36	this blueprint to provision both). Notes:
+37	
+38	- `RAILS_MASTER_KEY` is set as a secret env var on the service; `DATABASE_URL`
+39	  is wired automatically from the managed database.
+40	- Render&#x27;s free tier provides only one Postgres instance, so Solid
+41	  Cache/Queue/Cable share the primary database rather than using separate
+42	  database configs (see ADR-001).
+43	- `bin/docker-entrypoint` runs `db:prepare` and `db:seed` on every boot —
+44	  both are idempotent, which matters because the free tier has no shell access
+45	  to run one-off migration/seed commands.
+46	- Pushing to the connected branch triggers a new build and deploy automatically.
+47	
+48	## Wiring in real payments
+49	
+50	Submitting the donation form creates a `Donation` in `pending` status and
+51	nothing moves it to `paid` — there&#x27;s no payment integration in this demo. To
+52	add one (e.g. Stripe):
+53	
+54	1. On `DonationsController#create`, after persisting the `pending` `Donation`,
+55	   create a Stripe Checkout Session (or PaymentIntent) for its amount and
+56	   redirect the donor there instead of closing the modal; store the returned
+57	   session/intent id on the `Donation`.
+58	2. Add a webhook endpoint that listens for `checkout.session.completed` /
+59	   `payment_intent.succeeded`, looks up the `Donation` by the stored id, and
+60	   transitions it `pending` → `paid` (and a `payment_failed` event would move
+61	   it to `cancelled`).
+62	3. Make the transition idempotent — webhooks can be retried/duplicated, so the
+63	   handler should no-op if the `Donation` is already `paid`, and the lookup
+64	   should be on a unique external id rather than re-deriving state from the
+65	   payload.
+66	4. `Campaign#raised_amount` already counts `pending` and `paid` together (see
+67	   ADR-006); once real payments exist, that&#x27;s worth revisiting — it was a
+68	   deliberate stand-in for the &quot;no payment integration&quot; gap, not a permanent
+69	   design choice.
+70	
+71	## Key decisions (ADRs)
+72	
+73	Notable architectural decisions, with the trade-offs behind them, are recorded
+74	in `docs/adr/`:
+75	
+76	* [ADR-001: Solid Cache/Queue/Cable tables live in the primary database, not separate database configs](docs/adr/ADR-001-solid-tables-share-primary-database.md)
+77	* [ADR-002: Hotwire (Turbo + Stimulus) over a client-side SPA for live campaign updates](docs/adr/ADR-002-hotwire-over-spa.md)
+78	* [ADR-003: Postgres for every environment and every Rails 8 &quot;solid&quot; subsystem](docs/adr/ADR-003-postgres-everywhere.md)
+79	* [ADR-004: Donation amount tiers are a `DonationOption` model, not hardcoded view constants](docs/adr/ADR-004-db-backed-donation-options.md)
+80	* [ADR-005: `frequency` and `display_preference` are Rails enums, not free-text or lookup tables](docs/adr/ADR-005-enum-based-frequency-and-display-preference.md)
+81	* [ADR-006: `Campaign#raised_amount` counts `pending` *and* `paid` donations, not just `paid`](docs/adr/ADR-006-pending-and-paid-count-toward-progress.md)
+82	* [ADR-007: Campaign cover images are static files in `public/images/`, not Active Storage](docs/adr/ADR-007-self-hosted-cover-image.md)
+83	* [ADR-008: Render all six reference tabs, with &quot;coming soon&quot; placeholders for out-of-scope ones](docs/adr/ADR-008-full-tab-bar-with-placeholders.md)
+84	
+85	## What I&#x27;d do with more time
+86	
+87	- Populate the placeholder tabs (Ambassador board, Groups, About the charity,
+88	  Updates) with real content/components instead of &quot;coming soon&quot; panels.
+89	- A multi-step donation wizard closer to the reference site&#x27;s flow, rather
+90	  than a single modal form.
+91	- Active Storage for campaign cover images instead of static files in
+92	  `public/images/` (see ADR-007) — would matter once campaigns are
+93	  user-managed rather than seeded.
+94	- Donor accounts, so a donor&#x27;s `display_preference` and details could be
+95	  remembered rather than re-entered per donation.
+96	
+97	## Tools, process, and AI
+98	
+99	I used Claude Code throughout — for scaffolding, implementation, debugging
+100	(e.g. the production 500 documented in `docs/BUGFIXES.md`), and writing specs.
+101	I worked from a planning session captured in `CONTEXT.md` and a commit-sized
+102	checklist in `docs/TASKS.md`, comparing against the reference site as I went
+103	and recording notable decisions as ADRs. AI was most useful for scaffolding
+104	boilerplate (migrations, specs, Stimulus controllers) and for working through
+105	the Solid Cache/Queue/Cable bug quickly; I steered it most on RTL/Hebrew
+106	styling details and on which scope to cut versus keep, where the reference
+107	site&#x27;s actual behavior had to be the tie-breaker rather than a guess.
+108	
+109	The full chat transcript of this project is in [`transcript/`](transcript/index.html) —
+110	GitHub shows HTML as source rather than rendering it, so view it through
+111	[htmlpreview](https://htmlpreview.github.io/?https://github.com/yosefsha/jgivehome/blob/main/transcript/index.html)
+112	instead.
+113	</pre></div><button class="expand-btn">Show more</button></div></div></div></div>
+<div class="message assistant" id="msg-2026-06-08T17-51-48-429Z"><div class="message-header"><span class="role-label">Assistant</span><a href="#msg-2026-06-08T17-51-48-429Z" class="timestamp-link"><time datetime="2026-06-08T17:51:48.429Z" data-timestamp="2026-06-08T17:51:48.429Z">2026-06-08T17:51:48.429Z</time></a></div><div class="message-content">
+<div class="thinking"><div class="thinking-label">Thinking</div></div></div></div>
+<div class="message assistant" id="msg-2026-06-08T17-51-57-343Z"><div class="message-header"><span class="role-label">Assistant</span><a href="#msg-2026-06-08T17-51-57-343Z" class="timestamp-link"><time datetime="2026-06-08T17:51:57.343Z" data-timestamp="2026-06-08T17:51:57.343Z">2026-06-08T17:51:57.343Z</time></a></div><div class="message-content"><div class="file-tool edit-tool" data-tool-id="toolu_01BMPL3vVKUZiC2B3QeJfD1S">
+<div class="file-tool-header edit-header"><span class="file-tool-icon">✏️</span> Edit <span class="file-tool-path">README.md</span></div>
+<div class="file-tool-fullpath">/Users/yosefshachnovsky/dev/jgivehome/README.md</div>
+<div class="truncatable"><div class="truncatable-content">
+<div class="edit-section edit-old"><div class="edit-label">−</div><pre class="edit-content">**Live app**: https://jgivehome.onrender.com
+
+## Running locally</pre></div>
+<div class="edit-section edit-new"><div class="edit-label">+</div><pre class="edit-content">**Live app**: https://jgivehome.onrender.com
+
+## Key decisions (ADRs)
+
+Notable architectural decisions, with the trade-offs behind them, are recorded
+in `docs/adr/`:
+
+* [ADR-001: Solid Cache/Queue/Cable tables live in the primary database, not separate database configs](docs/adr/ADR-001-solid-tables-share-primary-database.md)
+* [ADR-002: Hotwire (Turbo + Stimulus) over a client-side SPA for live campaign updates](docs/adr/ADR-002-hotwire-over-spa.md)
+* [ADR-003: Postgres for every environment and every Rails 8 &#34;solid&#34; subsystem](docs/adr/ADR-003-postgres-everywhere.md)
+* [ADR-004: Donation amount tiers are a `DonationOption` model, not hardcoded view constants](docs/adr/ADR-004-db-backed-donation-options.md)
+* [ADR-005: `frequency` and `display_preference` are Rails enums, not free-text or lookup tables](docs/adr/ADR-005-enum-based-frequency-and-display-preference.md)
+* [ADR-006: `Campaign#raised_amount` counts `pending` *and* `paid` donations, not just `paid`](docs/adr/ADR-006-pending-and-paid-count-toward-progress.md)
+* [ADR-007: Campaign cover images are static files in `public/images/`, not Active Storage](docs/adr/ADR-007-self-hosted-cover-image.md)
+* [ADR-008: Render all six reference tabs, with &#34;coming soon&#34; placeholders for out-of-scope ones](docs/adr/ADR-008-full-tab-bar-with-placeholders.md)
+
+## Running locally</pre></div>
+</div><button class="expand-btn">Show more</button></div>
+</div></div></div>
+<div class="message tool-reply" id="msg-2026-06-08T17-51-57-382Z"><div class="message-header"><span class="role-label">Tool reply</span><a href="#msg-2026-06-08T17-51-57-382Z" class="timestamp-link"><time datetime="2026-06-08T17:51:57.382Z" data-timestamp="2026-06-08T17:51:57.382Z">2026-06-08T17:51:57.382Z</time></a></div><div class="message-content"><div class="tool-result"><div class="truncatable"><div class="truncatable-content"><pre>The file /Users/yosefshachnovsky/dev/jgivehome/README.md has been updated successfully. (file state is current in your context — no need to Read it back)</pre></div><button class="expand-btn">Show more</button></div></div></div></div>
+<div class="message assistant" id="msg-2026-06-08T17-52-00-072Z"><div class="message-header"><span class="role-label">Assistant</span><a href="#msg-2026-06-08T17-52-00-072Z" class="timestamp-link"><time datetime="2026-06-08T17:52:00.072Z" data-timestamp="2026-06-08T17:52:00.072Z">2026-06-08T17:52:00.072Z</time></a></div><div class="message-content">
+<div class="assistant-text"><p>Now remove the duplicate ADR section further down, and add the two new "what I'd do with more time" items:</p></div></div></div>
+<div class="message assistant" id="msg-2026-06-08T17-52-14-061Z"><div class="message-header"><span class="role-label">Assistant</span><a href="#msg-2026-06-08T17-52-14-061Z" class="timestamp-link"><time datetime="2026-06-08T17:52:14.061Z" data-timestamp="2026-06-08T17:52:14.061Z">2026-06-08T17:52:14.061Z</time></a></div><div class="message-content"><div class="file-tool edit-tool" data-tool-id="toolu_014iWDJUcJ4q4TEpKeW1JWtL">
+<div class="file-tool-header edit-header"><span class="file-tool-icon">✏️</span> Edit <span class="file-tool-path">README.md</span></div>
+<div class="file-tool-fullpath">/Users/yosefshachnovsky/dev/jgivehome/README.md</div>
+<div class="truncatable"><div class="truncatable-content">
+<div class="edit-section edit-old"><div class="edit-label">−</div><pre class="edit-content">## Key decisions (ADRs)
+
+Notable architectural decisions, with the trade-offs behind them, are recorded
+in `docs/adr/`:
+
+* [ADR-001: Solid Cache/Queue/Cable tables live in the primary database, not separate database configs](docs/adr/ADR-001-solid-tables-share-primary-database.md)
+* [ADR-002: Hotwire (Turbo + Stimulus) over a client-side SPA for live campaign updates](docs/adr/ADR-002-hotwire-over-spa.md)
+* [ADR-003: Postgres for every environment and every Rails 8 &#34;solid&#34; subsystem](docs/adr/ADR-003-postgres-everywhere.md)
+* [ADR-004: Donation amount tiers are a `DonationOption` model, not hardcoded view constants](docs/adr/ADR-004-db-backed-donation-options.md)
+* [ADR-005: `frequency` and `display_preference` are Rails enums, not free-text or lookup tables](docs/adr/ADR-005-enum-based-frequency-and-display-preference.md)
+* [ADR-006: `Campaign#raised_amount` counts `pending` *and* `paid` donations, not just `paid`](docs/adr/ADR-006-pending-and-paid-count-toward-progress.md)
+* [ADR-007: Campaign cover images are static files in `public/images/`, not Active Storage](docs/adr/ADR-007-self-hosted-cover-image.md)
+* [ADR-008: Render all six reference tabs, with &#34;coming soon&#34; placeholders for out-of-scope ones](docs/adr/ADR-008-full-tab-bar-with-placeholders.md)
+
+## What I&#39;d do with more time
+
+- Populate the placeholder tabs (Ambassador board, Groups, About the charity,
+  Updates) with real content/components instead of &#34;coming soon&#34; panels.
+- A multi-step donation wizard closer to the reference site&#39;s flow, rather
+  than a single modal form.
+- Active Storage for campaign cover images instead of static files in
+  `public/images/` (see ADR-007) — would matter once campaigns are
+  user-managed rather than seeded.
+- Donor accounts, so a donor&#39;s `display_preference` and details could be
+  remembered rather than re-entered per donation.</pre></div>
+<div class="edit-section edit-new"><div class="edit-label">+</div><pre class="edit-content">## What I&#39;d do with more time
+
+1. UI fixes — close the remaining gaps against the reference site&#39;s styling
+   and polish (spacing, type, placeholder-tab treatment) beyond the &#34;clearly
+   resemble&#34; bar this submission aimed for.
+2. Implement a real payment flow — wire in Stripe per the write-up above, so
+   donations can actually move from `pending` to `paid` instead of sitting
+   pending forever.
+3. Populate the placeholder tabs (Ambassador board, Groups, About the charity,
+   Updates) with real content/components instead of &#34;coming soon&#34; panels.
+4. A multi-step donation wizard closer to the reference site&#39;s flow, rather
+   than a single modal form.
+5. Active Storage for campaign cover images instead of static files in
+   `public/images/` (see ADR-007) — would matter once campaigns are
+   user-managed rather than seeded.
+6. Donor accounts, so a donor&#39;s `display_preference` and details could be
+   remembered rather than re-entered per donation.</pre></div>
+</div><button class="expand-btn">Show more</button></div>
+</div></div></div>
+<div class="message tool-reply" id="msg-2026-06-08T17-52-14-097Z"><div class="message-header"><span class="role-label">Tool reply</span><a href="#msg-2026-06-08T17-52-14-097Z" class="timestamp-link"><time datetime="2026-06-08T17:52:14.097Z" data-timestamp="2026-06-08T17:52:14.097Z">2026-06-08T17:52:14.097Z</time></a></div><div class="message-content"><div class="tool-result"><div class="truncatable"><div class="truncatable-content"><pre>The file /Users/yosefshachnovsky/dev/jgivehome/README.md has been updated successfully. (file state is current in your context — no need to Read it back)</pre></div><button class="expand-btn">Show more</button></div></div></div></div>
+<div class="message assistant" id="msg-2026-06-08T17-52-19-046Z"><div class="message-header"><span class="role-label">Assistant</span><a href="#msg-2026-06-08T17-52-19-046Z" class="timestamp-link"><time datetime="2026-06-08T17:52:19.046Z" data-timestamp="2026-06-08T17:52:19.046Z">2026-06-08T17:52:19.046Z</time></a></div><div class="message-content">
+<div class="assistant-text"><p>Done — moved the <strong>Key decisions (ADRs)</strong> section up to follow the intro/live-app link (more prominent placement), removed the now-duplicate copy further down, and added <strong>UI fixes</strong> and <strong>Implement a real payment flow</strong> as the top two items in "What I'd do with more time," renumbered as a single ordered list.</p>
+<p>Want me to commit and push these README changes?</p></div></div></div>
+<div class="message user" id="msg-2026-06-08T17-52-45-314Z"><div class="message-header"><span class="role-label">User</span><a href="#msg-2026-06-08T17-52-45-314Z" class="timestamp-link"><time datetime="2026-06-08T17:52:45.314Z" data-timestamp="2026-06-08T17:52:45.314Z">2026-06-08T17:52:45.314Z</time></a></div><div class="message-content">
+<div class="user-content"><p>do you think any of this list should stay in dedicated adr folder ?</p></div></div></div>
+<div class="message assistant" id="msg-2026-06-08T17-52-59-673Z"><div class="message-header"><span class="role-label">Assistant</span><a href="#msg-2026-06-08T17-52-59-673Z" class="timestamp-link"><time datetime="2026-06-08T17:52:59.673Z" data-timestamp="2026-06-08T17:52:59.673Z">2026-06-08T17:52:59.673Z</time></a></div><div class="message-content">
+<div class="thinking"><div class="thinking-label">Thinking</div></div></div></div>
+<div class="message assistant" id="msg-2026-06-08T17-53-05-576Z"><div class="message-header"><span class="role-label">Assistant</span><a href="#msg-2026-06-08T17-53-05-576Z" class="timestamp-link"><time datetime="2026-06-08T17:53:05.576Z" data-timestamp="2026-06-08T17:53:05.576Z">2026-06-08T17:53:05.576Z</time></a></div><div class="message-content">
+<div class="assistant-text"><p>No — I'd leave that list as-is in the README. ADRs document decisions you've actually made and committed to (with a real trade-off you can explain <em>why</em> you picked), not things you might do later. None of the "what I'd do with more time" items pass that bar yet:</p>
+<ul>
+<li>They're speculative ("would do," not "did") — there's no decision to record.</li>
+<li>No trade-off has been weighed — e.g. "implement real payments" isn't a choice between alternatives yet, it's just unscoped future work.</li>
+<li>Nothing about them would surprise a future reader who sees the current code — an ADR is for explaining <em>why the code looks the way it does</em>, and these items explain why it <em>doesn't</em> look a certain way (time constraint), which the README phrasing already covers.</li>
+</ul>
+<p>If you actually start one of these — say, you pick Stripe over Braintree for the payment integration, or decide on a specific multi-step wizard architecture — <em>that's</em> the moment an ADR becomes worth writing, because then there's a real trade-off and a decision a future reader would otherwise have to reverse-engineer.</p></div></div></div>
+<div class="message user" id="msg-2026-06-08T17-54-31-237Z"><div class="message-header"><span class="role-label">User</span><a href="#msg-2026-06-08T17-54-31-237Z" class="timestamp-link"><time datetime="2026-06-08T17:54:31.237Z" data-timestamp="2026-06-08T17:54:31.237Z">2026-06-08T17:54:31.237Z</time></a></div><div class="message-content">
+<div class="user-content"><p>no i mean the adrs. check all of them . are they needed ? list them and give consideration to remove and consideration to keep as adr</p></div></div></div>
+<div class="message assistant" id="msg-2026-06-08T17-54-34-627Z"><div class="message-header"><span class="role-label">Assistant</span><a href="#msg-2026-06-08T17-54-34-627Z" class="timestamp-link"><time datetime="2026-06-08T17:54:34.627Z" data-timestamp="2026-06-08T17:54:34.627Z">2026-06-08T17:54:34.627Z</time></a></div><div class="message-content">
+<div class="thinking"><div class="thinking-label">Thinking</div></div></div></div>
+<div class="message assistant" id="msg-2026-06-08T17-54-34-991Z"><div class="message-header"><span class="role-label">Assistant</span><a href="#msg-2026-06-08T17-54-34-991Z" class="timestamp-link"><time datetime="2026-06-08T17:54:34.991Z" data-timestamp="2026-06-08T17:54:34.991Z">2026-06-08T17:54:34.991Z</time></a></div><div class="message-content">
+<div class="tool-use bash-tool" data-tool-id="toolu_01VGbX3m6j4CTu2VU7tKinBG">
+<div class="tool-header"><span class="tool-icon">$</span> Bash</div><div class="truncatable"><div class="truncatable-content"><pre class="bash-command">for f in /Users/yosefshachnovsky/dev/jgivehome/docs/adr/ADR-*.md; do echo &#34;=== $f ===&#34;; cat &#34;$f&#34;; echo; done</pre></div><button class="expand-btn">Show more</button></div>
+</div></div></div>
+<div class="message tool-reply" id="msg-2026-06-08T17-54-38-985Z"><div class="message-header"><span class="role-label">Tool reply</span><a href="#msg-2026-06-08T17-54-38-985Z" class="timestamp-link"><time datetime="2026-06-08T17:54:38.985Z" data-timestamp="2026-06-08T17:54:38.985Z">2026-06-08T17:54:38.985Z</time></a></div><div class="message-content"><div class="tool-result"><div class="truncatable"><div class="truncatable-content"><pre>=== /Users/yosefshachnovsky/dev/jgivehome/docs/adr/ADR-001-solid-tables-share-primary-database.md ===
+---
+status: accepted
+---
+
+# Solid Cache/Queue/Cable tables live in the primary database, not separate database configs
+
+Rails 8 apps default to giving `solid_cache`, `solid_queue`, and `solid_cable` their own
+databases via `connects_to`/`migrations_paths`/`database.yml` entries. Render&#x27;s free tier
+only provisions a single Postgres instance, so we initially pointed all four configs
+(`primary`, `cache`, `queue`, `cable`) at the same `DATABASE_URL` while keeping them as
+separate logical databases with their own `migrations_paths`.
+
+That setup is silently broken on a shared physical database: every config also shares one
+`schema_migrations` table, so once the primary&#x27;s migrations run, Rails sees a non-zero
+migration version for `cache`/`queue`/`cable` too and concludes *their* schemas are already
+loaded. `db:prepare` never creates `solid_cache_entries`, `solid_queue_*`, or
+`solid_cable_messages` — and the app doesn&#x27;t fail at boot, only later, the first time
+something tries to use one of those tables (for us: the post-donation Turbo Stream broadcast,
+surfacing as a 500 on every donation submission). See `docs/BUGFIXES.md` (Critical) for the
+full repro and stack trace.
+
+We decided to stop declaring them as separate databases entirely. Their table definitions
+now live as ordinary migrations in `db/migrate` (`20260608130000`–`20260608130002`,
+copied from the gems&#x27; own schema templates), so the tables are created in the primary
+database as part of the normal migration run — no separate `connects_to`, `database:`, or
+`migrations_paths` config to keep in sync, and no shared-`schema_migrations` trap.
+
+## Considered options
+
+- **Give each gem its own physical database** — the &quot;correct&quot; multi-DB setup these gems are
+  designed for, but Render&#x27;s free tier only provides one Postgres instance; provisioning
+  more isn&#x27;t an option without a paid plan.
+- **Keep separate logical-database configs sharing one URL** (the original approach) —
+  rejected because it&#x27;s exactly what&#x27;s broken: shared `schema_migrations` masks the missing
+  schemas until runtime.
+- **Fold the tables into the primary database** (chosen) — simplest correct option for a
+  single-Postgres deployment; the tables just become more rows/tables in the one database we
+  already have, managed the same way as the app&#x27;s own schema.
+
+## Consequences
+
+- If the project ever moves to a host with multiple databases (or a paid Render plan), these
+  tables would need to be migrated out to dedicated databases and the corresponding
+  `connects_to`/`database.yml` config restored — that&#x27;s a real (if unlikely) reversal cost.
+- `db/migrate` now contains gem-owned table definitions alongside app migrations; if
+  `solid_cache`/`solid_queue`/`solid_cable` ship schema changes in future versions, we&#x27;d need
+  to hand-write a new migration to apply them (no `bin/rails solid_x:install` shortcut,
+  since that generator assumes the separate-database layout).
+
+=== /Users/yosefshachnovsky/dev/jgivehome/docs/adr/ADR-002-hotwire-over-spa.md ===
+---
+status: accepted
+---
+
+# Hotwire (Turbo + Stimulus) over a client-side SPA for live campaign updates
+
+The brief requires that submitting a donation visibly updates the campaign&#x27;s progress for
+everyone viewing the page, without a reload. We built this with Rails 8&#x27;s default Hotwire
+stack — Turbo Frames for the donation modal, Turbo Streams broadcast over Action Cable
+(`broadcast_replace_to`/`broadcast_prepend_to`) for live stat/donation-list updates, and
+Stimulus controllers for client-side interactivity (modal, tabs, donation form) — rather than
+building a separate JSON API and a React/Vue SPA on top of it.
+
+## Considered options
+
+- **SPA + JSON API** — would need a separate frontend build/deploy, client-side state
+  management for &quot;live&quot; updates (polling or a hand-rolled WebSocket layer), and duplicated
+  validation/rendering logic between server and client. More moving parts for a single-page
+  demo.
+- **Hotwire** (chosen) — server-rendered views stay the single source of truth; &quot;live update&quot;
+  is just broadcasting a re-rendered partial over the websocket connection Turbo already
+  manages. Matches the scale of the app (one campaign page) and is what Rails 8 ships with by
+  default, minimizing infrastructure to keep working.
+
+## Consequences
+
+Real-time delivery now depends on Action Cable&#x27;s pubsub backend being correctly wired up —
+see [ADR-001](ADR-001-solid-tables-share-primary-database.md) for how a misconfigured
+`solid_cable` setup turned this into a production 500 on every donation.
+
+=== /Users/yosefshachnovsky/dev/jgivehome/docs/adr/ADR-003-postgres-everywhere.md ===
+---
+status: accepted
+---
+
+# Postgres for every environment and every Rails 8 &quot;solid&quot; subsystem
+
+Rails 8 defaults to SQLite for new apps, and ships `solid_cache`/`solid_queue`/`solid_cable`
+expecting their own databases. We chose Postgres as the *only* database engine across
+development, test, and production, and — per [ADR-001](ADR-001-solid-tables-share-primary-database.md)
+— ultimately one single Postgres database for the app&#x27;s own tables and all three solid_*
+subsystems.
+
+## Considered options
+
+- **SQLite (Rails 8 default)** — works locally and even has decent production support now,
+  but Render&#x27;s free web-service tier wipes the local filesystem on every deploy, so a
+  file-backed database would lose all data. Postgres on Render&#x27;s managed free-tier database
+  persists independently of app deploys.
+- **Postgres for production, SQLite for dev/test** — would mean developing against a
+  different engine than production runs on, risking dialect-specific surprises (e.g.
+  `numericality`/decimal handling, index types) showing up only after deploy.
+- **Postgres everywhere** (chosen) — one engine, one mental model, dev/test faithfully mirror
+  production. The cost is a one-time local Postgres install, which the brief already implies
+  given Rails 8&#x27;s production-readiness expectations.
+
+=== /Users/yosefshachnovsky/dev/jgivehome/docs/adr/ADR-004-db-backed-donation-options.md ===
+---
+status: accepted
+---
+
+# Donation amount tiers are a `DonationOption` model, not hardcoded view constants
+
+Each campaign on the reference site offers a fixed set of preset donation amounts, each with
+its own label/message (e.g. ₪180 &quot;נטיעת עץ&quot;, ₪360 &quot;נטיעת 2 עצים&quot; marked as the most-chosen
+option) plus a free-form &quot;other amount&quot; field. We modeled this as a `DonationOption`
+(`belongs_to :campaign`, `amount`, `label`, `featured`) rather than hardcoding the tiers in
+the view or campaign model.
+
+## Considered options
+
+- **Hardcode amount/label pairs in the view or as a campaign-model constant** — faster to
+  write for a single campaign, but the brief seeds *two* campaigns with different tiers, and
+  hardcoding would mean amounts/labels can&#x27;t vary per campaign or be edited without a code
+  deploy.
+- **`DonationOption` model** (chosen) — each campaign owns its own ordered set of options,
+  `featured` drives the &quot;most chosen&quot; badge declaratively, and seeding/editing tiers is just
+  data, matching how the reference site clearly manages this (per-amount custom messaging,
+  presumably admin-editable).
+
+## Consequences
+
+The donation form (`_amount_options` partial) renders whatever `campaign.donation_options`
+returns, ordered by amount — adding, removing, or relabeling a tier for a campaign requires
+no code change, only a data change (seed or future admin UI).
+
+=== /Users/yosefshachnovsky/dev/jgivehome/docs/adr/ADR-005-enum-based-frequency-and-display-preference.md ===
+---
+status: accepted
+---
+
+# `frequency` and `display_preference` are Rails enums, not free-text or lookup tables
+
+A donation has a small, fixed set of possible frequencies (one-time / monthly) and donor
+display preferences (full name / first name only / anonymous). We modeled both as
+ActiveRecord `enum`s on `Donation` backed by integer columns, rather than free-text strings
+or separate lookup-table associations.
+
+## Considered options
+
+- **Free-text string columns** — no validation that the value is one of the allowed options,
+  every comparison is a string match (typo-prone: `&quot;montly&quot;` vs `&quot;monthly&quot;`), and the set of
+  allowed values lives only in view code/seed data, not the schema.
+- **Lookup-table associations** (e.g. a `Frequency` model) — appropriate when the set of
+  options is data the business changes at runtime, but these are fixed, code-meaningful
+  states (`Donation#display_name` branches on `display_preference`, broadcasts and views key
+  off `frequency`) — a join and an extra table would be pure overhead.
+- **Rails `enum`** (chosen) — integer storage (compact, indexable), generated predicate
+  methods (`donation.monthly?`, `donation.anonymous?`) make the model code read naturally,
+  and the valid set is declared once, in the model, enforced at the database/ORM boundary.
+
+=== /Users/yosefshachnovsky/dev/jgivehome/docs/adr/ADR-006-pending-and-paid-count-toward-progress.md ===
+---
+status: accepted
+---
+
+# `Campaign#raised_amount` counts `pending` *and* `paid` donations, not just `paid`
+
+`Donation#status` is an enum (`pending` / `paid` / `cancelled`) anticipating a future payment
+integration, but this demo has no payment gateway wired up — nothing ever flips a donation
+from `pending` to `paid`. `Campaign#raised_amount` (and therefore the progress bar, raised
+amount, and donor count) sums donations in *either* `pending` or `paid` status.
+
+The alternative — counting only `paid` — is the &quot;obviously correct&quot; accounting choice and is
+what a reader would assume. We deliberately deviated from it: with no payment integration, a
+donation submitted through the form would stay `pending` forever, the progress bar would
+never move, and the brief&#x27;s core &quot;submitting a donation visibly updates the campaign&#x27;s
+progress&quot; requirement would be unobservable. Counting `pending` is what makes that requirement
+demonstrable end to end without a payment gateway behind it.
+
+## Consequences
+
+This is explicitly a demo-environment trade-off, not a real-world accounting model — a real
+deployment with Stripe (or similar) wired up would need to revisit this once `pending` →
+`paid` transitions actually happen on a webhook, at which point counting only `paid` becomes
+correct (and counting `pending` would double-count or show optimistic totals). The code
+comment on `Campaign#raised_amount` and the README&#x27;s payment write-up should make this
+explicit so nobody mistakes it for the intended production behavior.
+
+=== /Users/yosefshachnovsky/dev/jgivehome/docs/adr/ADR-007-self-hosted-cover-image.md ===
+---
+status: accepted
+---
+
+# Campaign cover images are static files in `public/images/`, not Active Storage
+
+`Campaign#cover_image_url` is a plain string column pointing at a file under
+`public/images/` (e.g. `/images/background_orange.jpg`, downloaded from the reference
+campaign), rather than an Active Storage attachment.
+
+## Considered options
+
+- **Active Storage** — the idiomatic Rails way to handle user-uploaded images, with variants,
+  cloud storage backends, etc. Right tool if campaigns were created/edited through an admin
+  UI with image uploads.
+- **Self-hosted static file + URL column** (chosen) — there is no admin UI in this brief;
+  every campaign is seeded, not uploaded, and there are exactly two of them. A column holding
+  a path is the simplest thing that works, avoids provisioning cloud storage credentials for
+  a demo deploy, and keeps `db:seed` self-contained (no upload step to script).
+
+## Consequences
+
+If campaign management ever grows an admin/upload flow, `cover_image_url` would need to be
+replaced with (or backed by) an Active Storage attachment — a real migration, not just a
+config change. `TASKS.md`&#x27;s &quot;what you&#x27;d do with more time&quot; list already names this.
+
+=== /Users/yosefshachnovsky/dev/jgivehome/docs/adr/ADR-008-full-tab-bar-with-placeholders.md ===
+---
+status: accepted
+---
+
+# Render all six reference tabs, with &quot;coming soon&quot; placeholders for out-of-scope ones
+
+The reference campaign page has six tabs (About the project, Recent donations, Ambassador
+board, Groups, About the charity, Updates). The brief only requires &quot;About the project&quot; and
+&quot;Recent donations&quot; to have real content. We built the full six-tab bar via a Stimulus
+`tabs_controller`, with the other four rendering a visually-consistent &quot;coming soon&quot; panel
+instead of real content.
+
+## Considered options
+
+- **Only build the two required tabs** — less work, but the page would visually diverge from
+  the reference (a four-tab bar vs. a six-tab bar) in a way that&#x27;s immediately obvious to
+  anyone comparing them side by side, undermining the &quot;resemble the reference&quot; goal.
+- **Full tab bar with placeholders** (chosen) — matches the reference&#x27;s visual structure and
+  navigation exactly; the placeholders make the *scope boundary* explicit and intentional
+  (&quot;coming soon,&quot; not a bug or missing feature) rather than silently absent.
+
+## Consequences
+
+`TASKS.md` already lists &quot;populate placeholder tabs&quot; under &quot;what you&#x27;d do with more time&quot; —
+the placeholder panels are a deliberate, named seam for that future work, not a TODO left by
+accident.</pre></div><button class="expand-btn">Show more</button></div></div></div></div>
+<div class="message assistant" id="msg-2026-06-08T17-55-09-791Z"><div class="message-header"><span class="role-label">Assistant</span><a href="#msg-2026-06-08T17-55-09-791Z" class="timestamp-link"><time datetime="2026-06-08T17:55:09.791Z" data-timestamp="2026-06-08T17:55:09.791Z">2026-06-08T17:55:09.791Z</time></a></div><div class="message-content">
+<div class="thinking"><div class="thinking-label">Thinking</div></div></div></div>
+<div class="message assistant" id="msg-2026-06-08T17-55-25-256Z"><div class="message-header"><span class="role-label">Assistant</span><a href="#msg-2026-06-08T17-55-25-256Z" class="timestamp-link"><time datetime="2026-06-08T17:55:25.256Z" data-timestamp="2026-06-08T17:55:25.256Z">2026-06-08T17:55:25.256Z</time></a></div><div class="message-content">
+<div class="assistant-text"><p>I went through all eight. Here's my read, scored against the three-part bar from the ADR criteria (hard to reverse / surprising without context / result of a real trade-off):</p>
+<p><strong>Strong keeps</strong> — clearly pass all three:</p>
+<ul>
+<li><strong>ADR-001 (Solid tables share primary database)</strong> — Departs from the Rails 8 default in a way that's genuinely surprising, was forced by a real platform constraint (Render's single-DB free tier), is non-trivial to reverse, and documents the root cause of an actual production bug (the donation-500). Textbook ADR.</li>
+<li><strong>ADR-006 (pending + paid count toward progress)</strong> — The strongest one in the set. It deliberately <em>contradicts</em> the "obviously correct" approach a reader would assume (count only <code>paid</code>), for a specific demo-environment reason, and explicitly flags that it must be revisited once real payments land. Exactly what an ADR is for.</li>
+<li><strong>ADR-003 (Postgres everywhere)</strong> — Explains a deliberate departure from Rails 8's new SQLite default, driven by a non-obvious platform fact (Render wipes the filesystem on deploy). A future reader would otherwise wonder "why not the default?"</li>
+<li><strong>ADR-007 (self-hosted cover image vs. Active Storage)</strong> — Active Storage is the idiomatic Rails answer for images; choosing a plain string column instead is the kind of thing a reviewer would flag as "wrong" without this context.</li>
+<li><strong>ADR-008 (full tab bar with placeholders)</strong> — Building UI for features explicitly called out-of-scope is the kind of thing that looks like scope creep until you read the reasoning (visual-resemblance goal). Worth keeping to preempt that question.</li>
+</ul>
+<p><strong>Consider removing</strong> — weaker on "surprising" / "real trade-off":</p>
+<ul>
+<li><strong>ADR-002 (Hotwire over SPA)</strong> — Hotwire <em>is</em> the Rails 8 default; picking the framework's own default isn't really a fork in the road that needs defending. The "considered options" section reads more like justifying not doing extra work than weighing a genuine toss-up.</li>
+<li><strong>ADR-004 (DB-backed <code>DonationOption</code>)</strong> — Modeling variable, per-record data as its own table is the standard, expected Rails approach, not a surprising choice a reader would question. Reads more like ordinary data modeling than an architectural fork.</li>
+<li><strong>ADR-005 (enums for <code>frequency</code>/<code>display_preference</code>)</strong> — Using Rails <code>enum</code> for a small fixed set of states is idiomatic to the point of being unremarkable; an experienced Rails reader wouldn't pause here. The alternatives listed (free-text, lookup table) aren't close calls.</li>
+</ul>
+<p>My take: I'd fold 002/004/005's useful bits (e.g. "why <code>DonationOption</code> has a <code>featured</code> flag," "why enums not strings") into brief code comments on the models themselves, and trim those three ADR files. That leaves five ADRs that each answer a real "wait, why did they do <em>that</em>?" — a tighter, more credible set for a reviewer to read. Want me to remove those three and fold a short comment into the relevant models?</p></div></div></div>
+        
+
+<div class="pagination">
+<a href="index.html" class="index-link">Index</a>
+<a href="page-003.html">&larr; Prev</a>
+<a href="page-001.html">1</a>
+<a href="page-002.html">2</a>
+<a href="page-003.html">3</a>
+<span class="current">4</span>
+<a href="page-005.html">5</a>
+<a href="page-005.html">Next &rarr;</a>
+</div>
+
+    </div>
+    <script>
+document.querySelectorAll('time[data-timestamp]').forEach(function(el) {
+    const timestamp = el.getAttribute('data-timestamp');
+    const date = new Date(timestamp);
+    const now = new Date();
+    const isToday = date.toDateString() === now.toDateString();
+    const timeStr = date.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
+    if (isToday) { el.textContent = timeStr; }
+    else { el.textContent = date.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) + ' ' + timeStr; }
+});
+document.querySelectorAll('pre.json').forEach(function(el) {
+    let text = el.textContent;
+    text = text.replace(/"([^"]+)":/g, '<span style="color: #ce93d8">"$1"</span>:');
+    text = text.replace(/: "([^"]*)"/g, ': <span style="color: #81d4fa">"$1"</span>');
+    text = text.replace(/: (\d+)/g, ': <span style="color: #ffcc80">$1</span>');
+    text = text.replace(/: (true|false|null)/g, ': <span style="color: #f48fb1">$1</span>');
+    el.innerHTML = text;
+});
+document.querySelectorAll('.truncatable').forEach(function(wrapper) {
+    const content = wrapper.querySelector('.truncatable-content');
+    const btn = wrapper.querySelector('.expand-btn');
+    if (content.scrollHeight > 250) {
+        wrapper.classList.add('truncated');
+        btn.addEventListener('click', function() {
+            if (wrapper.classList.contains('truncated')) { wrapper.classList.remove('truncated'); wrapper.classList.add('expanded'); btn.textContent = 'Show less'; }
+            else { wrapper.classList.remove('expanded'); wrapper.classList.add('truncated'); btn.textContent = 'Show more'; }
+        });
+    }
+});
+</script>
+</body>
+</html>
