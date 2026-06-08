@@ -14,7 +14,7 @@ Aim for roughly 4–6 hours. We care far more about your judgment than about com
 you run short, cut scope deliberately and tell us what you cut and why. Please don't polish
 endlessly — a focused, well-reasoned submission beats a sprawling one.
 What to build (core)
-A page for the campaign above that shows:
+A page for the campaign above that shows:   
 Campaign details, organized into tabs (mirroring the tabs on the reference page): title,
 description / story, cover image, goal amount, amount raised, and progress toward the goal.
 A donation form: amount (a few preset options + a custom amount), one-time vs. recurring,

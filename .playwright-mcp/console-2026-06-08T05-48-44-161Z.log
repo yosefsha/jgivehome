@@ -1,0 +1,47 @@
+[     613ms] [WARNING] <link rel=preload> has an invalid `href` value @ https://www.jgive.com/new/he/ils/donation-targets/159183:9
+[    2592ms] ReferenceError: Webflow is not defined
+    at <anonymous>:1:1
+    at https://www.googletagmanager.com/gtm.js?id=GTM-T2F2W8&l=dataLayer:881:429
+    at qS (https://www.googletagmanager.com/gtm.js?id=GTM-T2F2W8&l=dataLayer:883:31)
+    at Od.pS (https://www.googletagmanager.com/gtm.js?id=GTM-T2F2W8&l=dataLayer:880:92)
+    at Od.<anonymous> (https://www.googletagmanager.com/gtm.js?id=GTM-T2F2W8&l=dataLayer:307:187)
+    at k.apply (https://www.googletagmanager.com/gtm.js?id=GTM-T2F2W8&l=dataLayer:229:466)
+    at hb (https://www.googletagmanager.com/gtm.js?id=GTM-T2F2W8&l=dataLayer:191:719)
+    at gb (https://www.googletagmanager.com/gtm.js?id=GTM-T2F2W8&l=dataLayer:191:470)
+    at Od.<anonymous> (https://www.googletagmanager.com/gtm.js?id=GTM-T2F2W8&l=dataLayer:253:473)
+    at k.apply (https://www.googletagmanager.com/gtm.js?id=GTM-T2F2W8&l=dataLayer:229:466)
+[    3110ms] [WARNING] An iframe which has both allow-scripts and allow-same-origin for its sandbox attribute can escape its sandboxing. @ https://js.nagich.co.il/core/5.0.0/accessibility.js:0
+[    3207ms] [LOG] %c[IND]%c You are running %c MacOS %c Operating system, %c Chrome %c browser, version: %c 148 color: White; background: #17384c; font-weight: bold; padding: 3px; border-radius:3px 0 0 3px; color: Black; background: #50e590; font-weight: bold; padding: 3px color: White; background: #17384c; font-weight: bold; padding: 3px; color: Black; background: #50e590; font-weight: bold; padding: 3px color: White; background: #17384c; font-weight: bold; padding: 3px; color: Black; background: #50e590; font-weight: bold; padding: 3px color: White; background: #17384c; font-weight: bold; padding: 3px; border-radius:0 3px 3px 0 @ https://js.nagich.co.il/core/5.0.0/accessibility.js:0
+[    3207ms] [LOG] %c[IND]%c Version %c5.0.0%c color: White; background: #17384c; font-weight: bold; padding: 3px; border-radius:3px 0 0 3px; color: Black; background: #50e590; font-weight: bold; padding: 3px color: White; background: #17384c; font-weight: bold; padding: 3px; border-radius:0 3px 3px 0  @ https://js.nagich.co.il/core/5.0.0/accessibility.js:0
+[   11539ms] [LOG] Download the Apollo DevTools for a better development experience: %s https://chrome.google.com/webstore/detail/apollo-client-developer-t/jdkknkkbebbapilgoeccciglkfbmbnfm @ https://www.jgive.com/new/he/ils/donation-targets/159183:3
+[  105795ms] Uncaught TypeError: Cannot read properties of undefined (reading 'unshift')
+    at <anonymous> (https://www.clarity.ms/tag/s9383nbcj6?ref=gtm:0:325)
+    at <anonymous> (https://www.clarity.ms/tag/s9383nbcj6?ref=gtm:0:370)
+[  105796ms] [WARNING] Error CL001: Multiple Clarity tags detected. @ https://www.jgive.com/new/he/ils/donation-targets/159183:3
+[  106133ms] Uncaught TypeError: Cannot read properties of undefined (reading 'unshift')
+    at <anonymous> (https://www.clarity.ms/tag/s9383nbcj6?ref=gtm:0:325)
+    at <anonymous> (https://www.clarity.ms/tag/s9383nbcj6?ref=gtm:0:370)
+[  106080ms] [WARNING] Error CL001: Multiple Clarity tags detected. @ https://www.jgive.com/new/he/ils/donation-targets/159183:3
+[  423946ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_CLOSED @ https://www.jgive.com/graphql:0
+[ 1268524ms] Uncaught TypeError: Cannot read properties of undefined (reading 'unshift')
+    at <anonymous> (https://www.clarity.ms/tag/s9383nbcj6?ref=gtm:0:325)
+    at <anonymous> (https://www.clarity.ms/tag/s9383nbcj6?ref=gtm:0:370)
+[ 1268529ms] [WARNING] Error CL001: Multiple Clarity tags detected. @ https://www.jgive.com/new/he/ils/donation-targets/159183:3
+[ 1448734ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_CLOSED @ https://www.jgive.com/graphql:0
+[ 2172100ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_CLOSED @ https://www.jgive.com/graphql:0
+[ 4040809ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_CLOSED @ https://www.jgive.com/graphql:0
+[ 4222392ms] Uncaught TypeError: Cannot read properties of undefined (reading 'unshift')
+    at <anonymous> (https://www.clarity.ms/tag/s9383nbcj6?ref=gtm:0:325)
+    at <anonymous> (https://www.clarity.ms/tag/s9383nbcj6?ref=gtm:0:370)
+[ 4222397ms] [WARNING] Error CL001: Multiple Clarity tags detected. @ https://www.jgive.com/new/he/ils/donation-targets/159183:3
+[ 4342279ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_CLOSED @ https://www.jgive.com/graphql:0
+[ 4945708ms] Uncaught TypeError: Cannot read properties of undefined (reading 'unshift')
+    at <anonymous> (https://www.clarity.ms/tag/s9383nbcj6?ref=gtm:0:325)
+    at <anonymous> (https://www.clarity.ms/tag/s9383nbcj6?ref=gtm:0:370)
+[ 4945712ms] [WARNING] Error CL001: Multiple Clarity tags detected. @ https://www.jgive.com/new/he/ils/donation-targets/159183:3
+[ 5367733ms] Uncaught TypeError: Cannot read properties of undefined (reading 'unshift')
+    at <anonymous> (https://www.clarity.ms/tag/s9383nbcj6?ref=gtm:0:325)
+    at <anonymous> (https://www.clarity.ms/tag/s9383nbcj6?ref=gtm:0:370)
+[ 5367738ms] [WARNING] Error CL001: Multiple Clarity tags detected. @ https://www.jgive.com/new/he/ils/donation-targets/159183:3
+[ 6090255ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_CLOSED @ https://www.jgive.com/graphql:0
+[ 7235339ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_CLOSED @ https://www.jgive.com/graphql:0

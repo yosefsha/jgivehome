@@ -1,0 +1,342 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - navigation [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e6]:
+          - link "Jgive logo" [ref=e9] [cursor=pointer]:
+            - /url: /new/he/ils/
+            - img "Jgive logo" [ref=e10]
+          - list [ref=e13]:
+            - listitem [ref=e14]:
+              - button "פתרונות " [ref=e15] [cursor=pointer]:
+                - generic [ref=e16]: פתרונות
+                - generic [ref=e17]: 
+            - listitem [ref=e18]:
+              - button "מוצרים " [ref=e19] [cursor=pointer]:
+                - generic [ref=e20]: מוצרים
+                - generic [ref=e21]: 
+            - listitem [ref=e22]:
+              - button "עלינו " [ref=e23] [cursor=pointer]:
+                - generic [ref=e24]: עלינו
+                - generic [ref=e25]: 
+        - list [ref=e26]:
+          - listitem [ref=e27]:
+            - button "search icon" [ref=e28] [cursor=pointer]:
+              - img "search icon" [ref=e29]
+          - listitem [ref=e31]:
+            - link "support תמיכה" [ref=e33] [cursor=pointer]:
+              - /url: https://www.jgive.com/about/contact-page
+              - img "support" [ref=e34]
+              - generic [ref=e38]: תמיכה
+          - listitem [ref=e39]:
+            - button "HE | ILS " [ref=e40] [cursor=pointer]:
+              - generic [ref=e41]: HE | ILS
+              - generic [ref=e42]: 
+          - listitem [ref=e43]:
+            - link "discover לתרומה" [ref=e45] [cursor=pointer]:
+              - /url: /new/he/ils/discover
+              - img "discover" [ref=e46]
+              - generic [ref=e51]: לתרומה
+          - listitem [ref=e52]:
+            - link "התחברות" [ref=e54] [cursor=pointer]:
+              - /url: /new/he/ils/users-sign-in
+              - generic [ref=e55]: התחברות
+    - main [ref=e56]:
+      - generic [ref=e57]:
+        - generic [ref=e60]:
+          - generic [ref=e61]:
+            - img "25719" [ref=e68]
+            - button [ref=e71] [cursor=pointer]
+          - generic [ref=e72]:
+            - generic [ref=e74]:
+              - generic [ref=e75]:
+                - generic [ref=e76]: ‏994,748 ‏₪
+                - generic [ref=e78]: 20% גויסו
+              - img [ref=e80]
+              - generic [ref=e82]:
+                - generic [ref=e84]:
+                  - text: "מספר תורמים:"
+                  - generic [ref=e85]: 3,177
+                - generic [ref=e87]: "יעד: ‏5,000,000 ‏₪"
+            - generic [ref=e88]:
+              - generic [ref=e89]:
+                - heading "הגן הכתום" [level=3] [ref=e90]
+                - paragraph [ref=e91]: לזכר בני משפחת ביבס וילדי ה-7 באוקטובר
+              - generic [ref=e92]:
+                - generic [ref=e94]:
+                  - button "bit logo" [ref=e95] [cursor=pointer]:
+                    - img "bit logo" [ref=e96]
+                  - button "לתרומה" [ref=e98] [cursor=pointer]
+                  - generic [ref=e99]:
+                    - generic [ref=e100]: "תרומה מוכרת לזיכוי מס:"
+                    - generic [ref=e101]:
+                      - img [ref=e103]
+                      - img [ref=e109]
+                      - img [ref=e120]
+                      - img [ref=e128]
+                    - button [ref=e138] [cursor=pointer]:
+                      - button [ref=e139]:
+                        - img [ref=e140]
+                - generic [ref=e143]:
+                  - button "העתקת קישור" [ref=e145] [cursor=pointer]:
+                    - img "העתקת קישור" [ref=e146]
+                  - button [ref=e148] [cursor=pointer]:
+                    - img [ref=e149]
+                  - button [ref=e151] [cursor=pointer]:
+                    - img [ref=e152]
+                  - button [ref=e154] [cursor=pointer]:
+                    - img [ref=e155]
+        - generic [ref=e157]:
+          - generic [ref=e160]:
+            - button "על הפרויקט" [ref=e161] [cursor=pointer]
+            - button "תרומות אחרונות" [ref=e162] [cursor=pointer]
+            - button "לוח שגרירים" [ref=e163] [cursor=pointer]
+            - button "קבוצות" [ref=e164] [cursor=pointer]
+            - button "על העמותה" [ref=e165] [cursor=pointer]
+            - button "עדכונים" [ref=e166] [cursor=pointer]
+          - generic [ref=e168]:
+            - heading "על הפרויקט" [level=4] [ref=e169]
+            - generic [ref=e170]:
+              - heading "הצטרפו עכשיו והיו ממקימי ׳הגן הכתום׳" [level=2] [ref=e171]
+              - heading "לזכר שירי, אריאל וכפיר ביבס, ולזכר כל ילדי ה-7 באוקטובר." [level=3] [ref=e172]:
+                - strong [ref=e173]:
+                  - text: לזכר שירי, אריאל וכפיר ביבס,
+                  - text: ולזכר כל ילדי ה-7 באוקטובר.
+              - paragraph
+              - paragraph [ref=e174]:
+                - text: אחרי שנתיים וחצי של כאב, טלטלה והתמודדות,
+                - text: מגיע מיזם שמביא בשורה חדשה לישראל -
+                - strong [ref=e175]: מקום של חיים, ריפוי ותקווה.
+              - paragraph [ref=e176]:
+                - text: אנחנו יוצאים לדרך עם הקמת
+                - strong [ref=e177]: הגן הכתום
+                - text: "-"
+                - text: מרחב ראשון מסוגו בישראל שמחבר זיכרון, טבע ילדים וריפוי.
+              - paragraph [ref=e178]:
+                - text: על פני
+                - strong [ref=e179]: 20 דונם
+                - text: יוקם מרחב חי של טבע, מים, משחק, משפחה וריפוי - פתוח לכולם.
+              - paragraph [ref=e180]:
+                - text: מקום שבו ילדים ירוצו וישחקו,
+                - text: משפחות יתכנסו יחד,
+                - text: ואנשים יוכלו לעצור לרגע, לנשום ולהתחבר מחדש.
+              - paragraph [ref=e181]:
+                - text: מקום שיכלול גם מרחב מכבד לזכר כל ילדי השבעה באוקטובר -
+                - text: כדי לזכור דרך החיים, האור והאהבה.
+              - heading "למען כל ילדי ישראל 🧡 למען התיקון של כולנו." [level=3] [ref=e182]:
+                - text: למען כל ילדי ישראל 🧡
+                - text: למען התיקון של כולנו.
+              - paragraph
+              - paragraph [ref=e183]:
+                - text: כדי שהגן יממש את מלוא הפוטנציאל שלו -
+                - text: אנחנו זקוקים לכם, אזרחי ישראל.
+              - figure [ref=e184]:
+                - img [ref=e185]
+              - paragraph [ref=e186]: "השטח כיום, ומה שהוא יהפוך להיות - תכנון: איזי בלנק אדריכלי נוף"
+              - paragraph
+              - heading "מה יחכה לנו בגן הכתום?" [level=3] [ref=e187]
+              - paragraph [ref=e188]:
+                - strong [ref=e189]: הגן הכתום מוקם במגדל העמק
+                - text: ", סמוך לגני הילדים \"אריאל\" ו\"כפיר\" הנבנים בימים אלה."
+                - text: גן שכל משפחה בישראל תוכל להגיע אליו, לנשום, להתחבר, לזכור - ולהרגיש שכולנו יחד בונים משהו חדש.
+              - paragraph
+              - paragraph [ref=e190]: "בגן הכתום יוקם מרחב חדשני וראשון מסוגו בישראל, שישלב בין טבע, משחק, ריפוי וזיכרון:"
+              - paragraph [ref=e191]:
+                - text: 🌿
+                - strong [ref=e192]: מתחם גינון טיפולי-קהילתי
+                - text: מרחב ריפוי דרך הטבע והאדמה עבור הלומי קרב, בני הגיל השלישי, אנשים עם צרכים מיוחדים, נוער בסיכון וקהילות הזקוקות לצמיחה מחדש.
+              - paragraph [ref=e193]:
+                - text: 🍊
+                - strong [ref=e194]: בוסתני פרי ומטעים
+                - text: הליכה בין עצי פרי, ריחות וצמחייה, בהשראת הפירות ששירי ואריאל אהבו.
+              - paragraph [ref=e195]:
+                - text: 💧
+                - strong [ref=e196]: הנחל האקולוגי
+                - text: נחל זורם המלווה את המבקרים לאורך הגן, עם גשרי עץ קטנים, מים חיים וחוויית הליכה מרגיעה.
+              - paragraph [ref=e197]:
+                - text: 🌱
+                - strong [ref=e198]: מרחב זיכרון לכל ילדי השבעה באוקטובר
+                - text: פינה מכבדת ומלאת אור, לזכר הילדים שנלקחו מעולמנו.
+              - paragraph [ref=e199]:
+                - text: 🧡
+                - strong [ref=e200]: האומגה הכתומה ומתקני המשחק
+                - text: כי צחוק של ילדים הוא התשובה הכי חזקה לכאב.
+              - paragraph [ref=e201]:
+                - text: 🌟
+                - strong [ref=e202]: קיר המשאלות
+                - text: מקום שבו כל ילד וילדה בישראל יוכלו להשאיר משאלה, תפילה, תקווה או חלום.
+              - paragraph [ref=e203]:
+                - text: 👨‍👩‍👧
+                - strong [ref=e204]: מרחבי פיקניק משפחתיים
+                - text: פינות מפגש ירוקות ומזמינות, ליצירת זיכרונות חדשים תחת כיפת השמיים.
+              - paragraph [ref=e205]:
+                - text: 🎭
+                - strong [ref=e206]: אמפיתיאטרון, כיתות חוץ ומרחבי תרבות
+                - text: מקום למפגשים, הופעות, פעילות חינוכית וקהילתית.
+              - paragraph [ref=e207]:
+                - text: 📚
+                - strong [ref=e208]: ספריית חוץ ומרחב השראה
+                - text: פינות ישיבה מוצלות עם ספרי ילדים, שולחנות יצירה ומקום לדמיון לצמוח.
+              - paragraph
+              - paragraph [ref=e209]: וזה רק חלק ממה שמתוכנן.
+              - paragraph [ref=e210]:
+                - text: הגן כולו ישלב מים, טרסות חקלאיות, שבילי הליכה, מרחבי משחק טבעיים, מטעים ופינות משפחה -
+                - text: חוויית הליכה בתוך נוף ארץ ישראלי חי ומרפא.
+              - paragraph [ref=e211]: זה יהיה מקום שבו עם שלם יוכל להגיע, לגעת באדמה, לנשום מחדש ולהרגיש שיש גם אור אחרי השבר.
+              - heading "זהו פרויקט לאומי של אהבה, אחריות ותקווה. ההזדמנות שלנו להשאיר חותם לדורות." [level=3] [ref=e212]:
+                - strong [ref=e213]: זהו פרויקט לאומי של אהבה, אחריות ותקווה.
+                - strong [ref=e214]: ההזדמנות שלנו להשאיר חותם לדורות.
+              - paragraph
+              - paragraph [ref=e215]:
+                - text: הפרויקט הוא יוזמה של עמותת
+                - strong [ref=e216]: ונטעת
+                - text: ", בשיתוף משפחת ביבס, עיריית מגדל העמק ובתכנון משרד אדריכלי הנוף איזי בלנק."
+              - figure [ref=e217]:
+                - img [ref=e218]
+              - heading "השטח כבר מחכה. עכשיו זה תלוי בנו." [level=3] [ref=e219]
+              - paragraph [ref=e220]:
+                - text: עיריית מגדל העמק העניקה את הקרקע והתחייבה לתחזוקה שוטפת.
+                - text: התוכניות מוכנות.
+                - generic [ref=e221]: עכשיו אנחנו צריכים אתכם כדי להפוך את האדמה הזו לגן של חיים.
+                - generic [ref=e222]: "כל תרומה תומכת ישירות בהקמת הגן:"
+                - text: כל עץ, כל שביל, כל פינה שתוקם - יקרה רק בזכותכם.
+                - text: בואו נבנה יחד מקום בו הכאב הופך לריפוי של מדינה שלמה.
+              - heading "תרמו עכשיו והיו שותפים בהקמת הגן." [level=3] [ref=e223]:
+                - strong [ref=e224]: תרמו עכשיו והיו שותפים בהקמת הגן.
+              - heading "לזכרם - למען כולנו 🧡" [level=3] [ref=e225]
+              - paragraph
+              - figure [ref=e226]:
+                - img [ref=e227]
+              - heading "״ראינו את התכניות של הגן, ופשוט התחלנו לבכות״" [level=3] [ref=e228]
+              - paragraph [ref=e229]:
+                - text: כשעופרי ביבס ראתה לראשונה את התוכנית של הגן,
+                - text: היא לא הצליחה לעצור את הדמעות.
+                - text: "עופרי דיברה על מה שמזכיר לה הכי הרבה את שירי והילדים:"
+                - text: פיקניקים של שבת.
+                - text: משפחה שיושבת יחד.
+                - text: ועל תמונה אחת שהיא לא מפסיקה לדמיין -
+                - text: אריאל מתרוצץ בין העצים,
+                - text: רץ למים, מטפס, נהנה מכל מה שהגן מציע.
+              - paragraph [ref=e230]:
+                - strong [ref=e231]:
+                  - text: יש חלומות שלא יתגשמו עבורם.
+                  - text: אבל אנחנו יכולים להגשים אותם דרך ילדי ישראל והדורות הבאים
+                - text: 🧡
+              - figure [ref=e232]:
+                - img [ref=e233]
+              - paragraph [ref=e234]: שירי ואריאל ביבס עם עופרי ביבס ובנה. מצד שמאל - ״קיר המשאלות״ בו כל ילד יוכל לבקש את משאלת ליבו
+              - paragraph
+              - paragraph [ref=e235]: "עמותת וְנָטַעְתָּ, מובילת הפרויקט, היא תנועה לאומית - סביבתית לריפוי החברה הישראלית דרך הטבע וחיבור לאדמה. העמותה מקימה מאות גינות טיפוליות במוסדות שיקום, חינוך ורווחה ונוטעת אלפי עצים ברחבי הארץ. מאז ה-7 באוקטובר, העמותה יצאה לדרך עם פרויקט ״אדמות ברכה״ להקמת מאות מרחבי ריפוי קהילתיים דרך הטבע ביישובי העוטף, הצפון ובלב קהילות שבנפגעו במלחמה. העמותה פועלת במודל: אדם - אדמה - קהילה - כל הפרויקטים תמיד מחברים בין בין אדם לאדם ובין אדם לאדמה. מתוך ידיעה והבנה עמוקה, שריפוי אדם במשבר, קשור באופן ישיר לריפוי ושיקום הקהילה והסביבה שהוא חלק ממנה."
+              - paragraph [ref=e236]: העמותה זוכת Israel Earth Prize לשנת 2023, עבור השפעתה החיובית על הסביבה וחברה בישראל.
+              - paragraph [ref=e237]: פרויקט ׳הגן הכתום׳ מתקיים בשיתוף פעולה מלא עם עיריית מגדל העמק ומשפחת ביבס.
+              - paragraph [ref=e238]: "לתמיכה של חברות וארגונים יש ליצור קשר: 054-2370949, דוריאל רימר, מנכ״לית עמותת ונטעת"
+              - paragraph
+            - generic [ref=e239]:
+              - generic [ref=e240]:
+                - generic [ref=e241]:
+                  - heading "ליצירת קשר עם העמותה:" [level=6] [ref=e242]
+                  - generic [ref=e243]:
+                    - generic [ref=e244]: אי-מייל
+                    - generic [ref=e245]: info@venatata.org
+                  - generic [ref=e246]:
+                    - generic [ref=e247]: מספר טלפון
+                    - generic [ref=e248]: "0528622966"
+                  - generic [ref=e249]:
+                    - generic [ref=e250]: כתובת אתר
+                    - link "http://www.venatata.org" [ref=e251] [cursor=pointer]:
+                      - /url: http://www.venatata.org
+                  - generic [ref=e252]:
+                    - generic [ref=e253]: מספר עמותה
+                    - generic [ref=e254]: "580689537"
+                - generic [ref=e255]:
+                  - heading "הידעת?" [level=6] [ref=e256]
+                  - paragraph [ref=e257]: תרומות לפרויקט זה יתכן ויהיו מוכרות לצורכי מס בישראל, בארה"ב, בקנדה ובאנגליה, בהתאם לתנאי השימוש של האתר. כל המלצת תורם חייבת לעמוד במטרות הנתמכות של הארגון ועשויות להיות מנותבות מחדש בהתאם למדיניות שלנו ולתנאי השימוש.
+              - link "עברו לדף העמותה" [ref=e260] [cursor=pointer]:
+                - /url: /new/he/ils/charity-organizations/2602
+    - generic [ref=e262]:
+      - generic [ref=e263]:
+        - generic [ref=e264]:
+          - link "Jgive" [ref=e266] [cursor=pointer]:
+            - /url: /new/he/ils/
+            - img "Jgive" [ref=e267]
+          - paragraph [ref=e270]: זכויות יוצרים, קרן עשור (ע"ר) 2026
+        - generic [ref=e271]:
+          - generic [ref=e272]:
+            - generic [ref=e273]: אודות
+            - paragraph [ref=e274]:
+              - link "הסיפור שלנו" [ref=e276] [cursor=pointer]:
+                - /url: https://www.jgive.com/about/our-story
+            - paragraph [ref=e277]:
+              - link "הדירקטוריון החברתי" [ref=e279] [cursor=pointer]:
+                - /url: https://www.jgive.com/about/our-social-board
+            - paragraph [ref=e280]:
+              - link "ועדת ההשקעות" [ref=e282] [cursor=pointer]:
+                - /url: https://www.jgive.com/about/the-investment-committee
+            - paragraph [ref=e283]:
+              - link "מחקר ודאטה" [ref=e285] [cursor=pointer]:
+                - /url: https://www.jgive.com/about/research-data
+            - paragraph [ref=e286]:
+              - link "אבטחת מידע" [ref=e288] [cursor=pointer]:
+                - /url: https://www.jgive.com/about/data-security
+          - generic [ref=e289]:
+            - generic [ref=e290]: הצטרפו אלינו
+            - paragraph [ref=e291]:
+              - link "תורמים" [ref=e293] [cursor=pointer]:
+                - /url: https://www.jgive.com/solutions/donors/about
+            - paragraph [ref=e294]:
+              - link "עמותות" [ref=e296] [cursor=pointer]:
+                - /url: https://www.jgive.com/solutions/charities/raise
+            - paragraph [ref=e297]:
+              - link "חברות" [ref=e299] [cursor=pointer]:
+                - /url: https://www.jgive.com/solutions/companies/jgive-work
+            - paragraph [ref=e300]:
+              - link "קריירה" [ref=e302] [cursor=pointer]:
+                - /url: https://www.jgive.com/about/careers
+          - generic [ref=e303]:
+            - generic [ref=e304]: מוצרים
+            - paragraph [ref=e305]:
+              - link "Jgive Platinum" [ref=e307] [cursor=pointer]:
+                - /url: https://www.jgive.com/solutions/donors/platinum
+            - paragraph [ref=e308]:
+              - link "Jgive PRO" [ref=e310] [cursor=pointer]:
+                - /url: https://www.jgive.com/solutions/charities/jgive-pro
+            - paragraph [ref=e311]:
+              - link "Jgive Business" [ref=e313] [cursor=pointer]:
+                - /url: https://www.jgive.com/solutions/companies/jgive-work
+            - paragraph [ref=e314]:
+              - link "GiveCard" [ref=e316] [cursor=pointer]:
+                - /url: https://www.jgive.com/solutions/companies/givecard
+            - paragraph [ref=e317]:
+              - link "תרומת מניות" [ref=e319] [cursor=pointer]:
+                - /url: https://www.jgive.com/solutions/donors/stocks-donation
+          - generic [ref=e320]:
+            - generic [ref=e321]: שימושי
+            - paragraph [ref=e322]:
+              - link "תמיכה" [ref=e324] [cursor=pointer]:
+                - /url: https://intercom.help/jgive-support/he
+            - paragraph [ref=e325]:
+              - link "צור קשר" [ref=e327] [cursor=pointer]:
+                - /url: https://www.jgive.com/about/contact-page
+            - paragraph [ref=e328]:
+              - link "עמלות" [ref=e330] [cursor=pointer]:
+                - /url: https://www.jgive.com/about/fees
+            - paragraph [ref=e331]:
+              - link "לתרומה" [ref=e333] [cursor=pointer]:
+                - /url: /new/he/ils/discover
+      - generic [ref=e334]:
+        - paragraph [ref=e335]:
+          - button "Cookies Settings" [ref=e336] [cursor=pointer]
+        - paragraph [ref=e337]:
+          - link "תנאי שימוש" [ref=e339] [cursor=pointer]:
+            - /url: https://www.jgive.com/solutions/terms-of-use
+        - paragraph [ref=e340]:
+          - link "תנאי שימוש לעמותות" [ref=e342] [cursor=pointer]:
+            - /url: https://www.jgive.com/solutions/terms-of-use-for-charities
+        - paragraph [ref=e343]:
+          - link "מדיניות פרטיות" [ref=e345] [cursor=pointer]:
+            - /url: https://www.jgive.com/solutions/privacy-policy
+        - paragraph [ref=e346]:
+          - link "הצהרת נגישות" [ref=e348] [cursor=pointer]:
+            - /url: https://www.jgive.com/solutions/accessibility-statement
+  - iframe [ref=e360]:
+    
