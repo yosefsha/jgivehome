@@ -1,27 +1,13 @@
 <div dir="rtl" class="max-w-4xl mx-auto">
+  <%= turbo_stream_from @campaign %>
+
   <div class="rounded-lg overflow-hidden shadow">
     <img src="<%= @campaign.cover_image_url %>" alt="<%= @campaign.title %>" class="w-full h-64 object-cover">
 
     <div class="bg-white p-6">
       <h1 class="text-3xl font-bold text-gray-900"><%= @campaign.title %></h1>
 
-      <div class="mt-6">
-        <div class="flex items-baseline justify-between text-sm text-gray-600">
-          <span class="text-2xl font-bold text-orange-600">
-            <%= number_to_currency(@campaign.raised_amount, unit: "₪", format: "%n %u") %> גויסו
-          </span>
-          <span>יעד: <%= number_to_currency(@campaign.goal_amount, unit: "₪", format: "%n %u") %></span>
-        </div>
-
-        <div class="mt-2 h-3 w-full rounded-full bg-gray-200 overflow-hidden">
-          <div class="h-full bg-orange-500" style="width: <%= [ @campaign.progress_percentage, 100 ].min %>%"></div>
-        </div>
-
-        <div class="mt-2 flex items-center justify-between text-sm text-gray-500">
-          <span><%= @campaign.progress_percentage %>% גויסו</span>
-          <span>מספר תורמים: <%= @campaign.donations.distinct.count(:donor_email) %></span>
-        </div>
-      </div>
+      <%= render "stats", campaign: @campaign %>
 
       <div class="mt-6" data-controller="modal">
         <button type="button"
@@ -70,7 +56,14 @@
       </div>
 
       <div data-tabs-target="panel" data-tabs-name-param="recent_donations" hidden>
-        <p class="text-gray-500">רשימת התרומות האחרונות תוצג כאן בקרוב.</p>
+        <div id="<%= dom_id(@campaign, :recent_donations) %>">
+          <% recent_donations = @campaign.donations.where(status: [ :pending, :paid ]).order(created_at: :desc).limit(20) %>
+          <% if recent_donations.any? %>
+            <%= render partial: "donations/donation", collection: recent_donations, as: :donation %>
+          <% else %>
+            <p id="<%= dom_id(@campaign, :no_donations) %>" class="text-gray-500">עדיין אין תרומות להצגה.</p>
+          <% end %>
+        </div>
       </div>
 
       <div data-tabs-target="panel" data-tabs-name-param="ambassador_board" hidden>

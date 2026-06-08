@@ -1,0 +1,17 @@
+<div id="<%= dom_id(donation) %>" dir="rtl" class="border-b border-gray-100 py-3 last:border-b-0">
+  <div class="flex items-center justify-between gap-3">
+    <span class="font-medium text-gray-900">
+      <%= donation.display_name %>
+      <% if donation.monthly? %>
+        <span class="me-1 inline-block rounded-full bg-orange-100 px-2 py-0.5 text-xs text-orange-700">תרומה חודשית</span>
+      <% end %>
+    </span>
+    <span class="shrink-0 font-semibold text-orange-600">
+      <%= number_to_currency(donation.amount, unit: "₪", format: "%n %u") %>
+    </span>
+  </div>
+
+  <% if donation.dedication_message.present? %>
+    <p class="mt-1 text-sm text-gray-500"><%= donation.dedication_message %></p>
+  <% end %>
+</div>

@@ -61,11 +61,11 @@ Strategy: get a minimal app deployed to Render *first* (hello-world + basic test
 - [x] Commit + push
 
 ## 7. Donation creation & live progress update
-- [ ] `DonationsController#create`: build the Donation in `pending` status, associate to its Campaign, persist
-- [ ] On success: close the modal, show a brief "thank you — your donation is pending" message, and broadcast a Turbo Stream updating the raised-amount, progress bar, and donor count in place (no full reload) — this is the part that makes the brief's "submitting updates the campaign's progress" requirement directly observable
-- [ ] "Recent donations" list: donor name resolved per `display_preference` (e.g. "Yosef S." for first-name-only, "Anonymous" for anonymous), amount, dedication message when present, recurring badge — appended live via Turbo Stream when a new donation lands
-- [ ] **Tests**: request/system spec — submitting the donation form creates a `pending` Donation, the campaign's raised amount/progress visibly increases, and the new donation appears in the "Recent donations" list with the name rendered per its `display_preference`
-- [ ] Commit + push
+- [x] `DonationsController#create`: build the Donation in `pending` status, associate to its Campaign, persist
+- [x] On success: close the modal, show a brief "thank you — your donation is pending" message, and broadcast a Turbo Stream updating the raised-amount, progress bar, and donor count in place (no full reload) — this is the part that makes the brief's "submitting updates the campaign's progress" requirement directly observable (extracted `campaigns/_stats` partial, subscribed via `turbo_stream_from @campaign`, broadcast `broadcast_replace_to` on create)
+- [x] "Recent donations" list: donor name resolved per `display_preference` (e.g. "Yosef S." for first-name-only, "Anonymous" for anonymous), amount, dedication message when present, recurring badge — appended live via Turbo Stream when a new donation lands (`Donation#display_name`, `donations/_donation` partial, `broadcast_prepend_to` + placeholder removal via `broadcast_remove_to`)
+- [x] **Tests**: system spec — two concurrent Capybara sessions; submitting the donation form in one broadcasts the updated raised amount and the new donation (with its `display_preference`-resolved name) to the other session live, with no reload
+- [x] Commit + push
 
 ## 8. Styling pass
 - [ ] RTL check across the page (`dir="rtl"`, Tailwind logical utilities `ms-`/`me-`/`ps-`/`pe-`/`rtl:`)

@@ -1,4 +1,6 @@
 class DonationsController < ApplicationController
+  include ActionView::RecordIdentifier
+
   before_action :set_campaign
 
   def new
@@ -10,6 +12,7 @@ class DonationsController < ApplicationController
     @donation.status = :pending
 
     if @donation.save
+      broadcast_campaign_updates
       redirect_to campaign_path(@campaign), notice: "תודה! התרומה שלך התקבלה והיא ממתינה לאישור."
     else
       render :new, status: :unprocessable_entity
@@ -17,6 +20,26 @@ class DonationsController < ApplicationController
   end
 
   private
+
+  # Pushes the new totals and the new donation to everyone currently viewing
+  # the campaign page (via the `turbo_stream_from @campaign` subscription),
+  # so the progress bar, raised amount, donor count, and "Recent donations"
+  # list update live for them without a reload — the submitter's own page
+  # gets there anyway via the post-redirect full-page visit.
+  def broadcast_campaign_updates
+    @campaign.broadcast_replace_to(@campaign,
+      target: dom_id(@campaign, :stats),
+      partial: "campaigns/stats",
+      locals: { campaign: @campaign })
+
+    @donation.broadcast_prepend_to(@campaign,
+      target: dom_id(@campaign, :recent_donations),
+      partial: "donations/donation",
+      locals: { donation: @donation })
+
+    # Removes the "no donations yet" placeholder once the first one lands.
+    @campaign.broadcast_remove_to(@campaign, target: dom_id(@campaign, :no_donations))
+  end
 
   def set_campaign
     @campaign = Campaign.find_by!(slug: params[:campaign_slug])
