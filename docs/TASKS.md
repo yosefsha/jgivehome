@@ -38,10 +38,10 @@ Strategy: get a minimal app deployed to Render *first* (hello-world + basic test
 - [x] Commit + push; run `rails db:seed` against production (wired into `bin/docker-entrypoint` since it's idempotent — runs automatically on every boot, no shell access needed on Render's free tier)
 
 ## 4. Campaign show page — header
-- [ ] Routes + `CampaignsController#show` (by slug or id)
-- [ ] Header: cover image, title, tagline, raised amount, goal amount, donor count, progress bar — Tailwind-styled, `dir="rtl"` on Hebrew content
-- [ ] "Donate" button that opens the donation modal (wiring lands in section 6)
-- [ ] **Tests**: request/system spec asserting the show page renders the campaign's title, raised amount, goal, and progress bar correctly for seeded data
+- [x] Routes + `CampaignsController#show` (by slug or id)
+- [x] Header: cover image, title, raised amount, goal amount, donor count, progress bar — Tailwind-styled, `dir="rtl"` on Hebrew content (skipped a separate "tagline" field — the data model from section 2 has no such column, and the story/tabs already cover that role; adding one would be scope creep for a single subtitle line)
+- [x] "Donate" button that opens the donation modal (static button for now; modal wiring lands in section 6)
+- [x] **Tests**: request spec asserting the show page renders the campaign's title, raised amount, goal, and progress bar correctly for seeded data
 - [ ] Commit + push
 
 ## 5. Tabs

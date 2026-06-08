@@ -1,0 +1,33 @@
+<div dir="rtl" class="max-w-4xl mx-auto">
+  <div class="rounded-lg overflow-hidden shadow">
+    <img src="<%= @campaign.cover_image_url %>" alt="<%= @campaign.title %>" class="w-full h-64 object-cover">
+
+    <div class="bg-white p-6">
+      <h1 class="text-3xl font-bold text-gray-900"><%= @campaign.title %></h1>
+
+      <div class="mt-6">
+        <div class="flex items-baseline justify-between text-sm text-gray-600">
+          <span class="text-2xl font-bold text-orange-600">
+            <%= number_to_currency(@campaign.raised_amount, unit: "₪", format: "%n %u") %> גויסו
+          </span>
+          <span>יעד: <%= number_to_currency(@campaign.goal_amount, unit: "₪", format: "%n %u") %></span>
+        </div>
+
+        <div class="mt-2 h-3 w-full rounded-full bg-gray-200 overflow-hidden">
+          <div class="h-full bg-orange-500" style="width: <%= [ @campaign.progress_percentage, 100 ].min %>%"></div>
+        </div>
+
+        <div class="mt-2 flex items-center justify-between text-sm text-gray-500">
+          <span><%= @campaign.progress_percentage %>% גויסו</span>
+          <span>מספר תורמים: <%= @campaign.donations.distinct.count(:donor_email) %></span>
+        </div>
+      </div>
+
+      <div class="mt-6">
+        <button type="button" class="px-6 py-3 rounded-md bg-orange-500 text-white font-semibold hover:bg-orange-600">
+          לתרומה
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
