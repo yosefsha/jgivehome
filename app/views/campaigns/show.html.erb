@@ -30,4 +30,55 @@
       </div>
     </div>
   </div>
+
+  <% tabs = [
+       { name: "about_project", label: "על הפרויקט" },
+       { name: "recent_donations", label: "תרומות אחרונות" },
+       { name: "ambassador_board", label: "לוח שגרירים" },
+       { name: "groups", label: "קבוצות" },
+       { name: "about_charity", label: "על העמותה" },
+       { name: "updates", label: "עדכונים" }
+     ] %>
+
+  <div data-controller="tabs" class="mt-8 bg-white rounded-lg shadow">
+    <div class="flex flex-wrap border-b border-gray-200">
+      <% tabs.each do |tab| %>
+        <button
+          type="button"
+          data-tabs-target="tab"
+          data-tabs-name-param="<%= tab[:name] %>"
+          data-action="tabs#select"
+          class="px-4 py-3 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:text-orange-600 [&.tabs-active]:text-orange-600 [&.tabs-active]:border-orange-500"
+        >
+          <%= tab[:label] %>
+        </button>
+      <% end %>
+    </div>
+
+    <div class="p-6">
+      <div data-tabs-target="panel" data-tabs-name-param="about_project">
+        <p class="whitespace-pre-line text-gray-700 leading-relaxed"><%= @campaign.story %></p>
+      </div>
+
+      <div data-tabs-target="panel" data-tabs-name-param="recent_donations" hidden>
+        <p class="text-gray-500">רשימת התרומות האחרונות תוצג כאן בקרוב.</p>
+      </div>
+
+      <div data-tabs-target="panel" data-tabs-name-param="ambassador_board" hidden>
+        <p class="text-gray-500">לוח השגרירים בקרוב.</p>
+      </div>
+
+      <div data-tabs-target="panel" data-tabs-name-param="groups" hidden>
+        <p class="text-gray-500">קבוצות בקרוב.</p>
+      </div>
+
+      <div data-tabs-target="panel" data-tabs-name-param="about_charity" hidden>
+        <p class="text-gray-500">מידע על העמותה בקרוב.</p>
+      </div>
+
+      <div data-tabs-target="panel" data-tabs-name-param="updates" hidden>
+        <p class="text-gray-500">עדכונים בקרוב.</p>
+      </div>
+    </div>
+  </div>
 </div>
