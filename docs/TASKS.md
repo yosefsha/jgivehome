@@ -50,7 +50,7 @@ Strategy: get a minimal app deployed to Render *first* (hello-world + basic test
 - [x] Placeholder panels for Ambassador board / Groups / About the charity / Updates ("coming soon," visually consistent with the rest — these are explicitly out of the brief's required scope)
 - [x] "Recent donations" tab content is built in section 7 (needs Donation data first) — placeholder panel wired into the tabs for now
 - [x] **Tests**: system spec asserting that clicking each tab reveals the corresponding panel and the "About the project" tab shows the campaign's story (added headless-Chrome Capybara config to support it)
-- [ ] Commit + push
+- [x] Commit + push
 
 ## 6. Donation form (modal)
 - [ ] `DonationsController#new` / `#create`, rendered as a Turbo Frame modal opened/closed via a Stimulus `modal_controller`
