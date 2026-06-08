@@ -1,0 +1,22 @@
+databases:
+  - name: jgivehome-db
+    plan: free
+    databaseName: jgivehome_production
+    user: jgivehome
+
+services:
+  - type: web
+    name: jgivehome
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /up
+    envVars:
+      - key: RAILS_ENV
+        value: production
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: jgivehome-db
+          property: connectionString
