@@ -22,3 +22,9 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+## Architecture decisions
+
+Notable architectural decisions are recorded as ADRs in `docs/adr/`:
+
+* [ADR-001: Solid Cache/Queue/Cable tables live in the primary database, not separate database configs](docs/adr/ADR-001-solid-tables-share-primary-database.md)
