@@ -84,22 +84,18 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
-# Render (and most single-database hosts) provide one Postgres instance via
-# DATABASE_URL. Rather than provisioning four separate databases for the app,
-# solid_cache, solid_queue, and solid_cable, point every connection at the same
-# URL — each still gets its own tables via its own migrations_paths, they just
-# live in one physical database. This is a supported "single database" layout
-# for the solid_* gems and keeps the free-tier Postgres setup simple.
+# Render's free tier provides a single Postgres instance via DATABASE_URL.
+# solid_cache/solid_queue/solid_cable normally connect to their own databases
+# (configured via `connects_to`/`migrations_paths`), but pointing those at a
+# *second* config that shares the same physical database doesn't work: every
+# config shares one `schema_migrations` table, so once the primary's migrations
+# have run, Rails sees a non-zero version for the cache/queue/cable configs too
+# and concludes their schemas are already loaded — their tables never get
+# created (this caused 500s on every Turbo Stream broadcast, e.g. on donation
+# creation, since `solid_cable_messages` didn't exist). The fix: don't declare
+# them as separate databases at all — their migrations live in db/migrate
+# alongside the app's own, so their tables are created in the primary database
+# as part of the normal migration run.
 production:
-  primary: &primary_production
-    <<: *default
-    url: <%= ENV["DATABASE_URL"] %>
-  cache:
-    <<: *primary_production
-    migrations_paths: db/cache_migrate
-  queue:
-    <<: *primary_production
-    migrations_paths: db/queue_migrate
-  cable:
-    <<: *primary_production
-    migrations_paths: db/cable_migrate
+  <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
