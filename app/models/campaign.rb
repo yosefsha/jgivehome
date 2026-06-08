@@ -6,6 +6,12 @@ class Campaign < ApplicationRecord
   validates :slug, uniqueness: true
   validates :goal_amount, numericality: { greater_than: 0 }
 
+  # Makes url helpers (campaign_path(campaign), new_campaign_donation_path(campaign), ...)
+  # build slug-based URLs instead of falling back to the numeric id.
+  def to_param
+    slug
+  end
+
   # Pending donations count toward progress: this demo has no payment
   # integration to ever flip them to "paid", so excluding pending would mean
   # the progress bar never visibly moves after a donation is submitted.

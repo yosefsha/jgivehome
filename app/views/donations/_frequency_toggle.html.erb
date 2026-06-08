@@ -1,0 +1,12 @@
+<div class="mb-5">
+  <p class="mb-2 block text-sm font-medium text-gray-700">תדירות התרומה</p>
+
+  <div class="flex gap-3">
+    <% { one_time: "תרומה חד-פעמית", monthly: "הוראת קבע" }.each do |value, label| %>
+      <label class="flex cursor-pointer items-center gap-2 rounded-md border border-gray-300 px-4 py-2 has-[:checked]:border-orange-500 has-[:checked]:bg-orange-50">
+        <%= form.radio_button :frequency, value, checked: form.object.frequency == value.to_s %>
+        <span class="text-sm text-gray-700"><%= label %></span>
+      </label>
+    <% end %>
+  </div>
+</div>

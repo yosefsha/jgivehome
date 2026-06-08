@@ -53,12 +53,12 @@ Strategy: get a minimal app deployed to Render *first* (hello-world + basic test
 - [x] Commit + push
 
 ## 6. Donation form (modal)
-- [ ] `DonationsController#new` / `#create`, rendered as a Turbo Frame modal opened/closed via a Stimulus `modal_controller`
-- [ ] Build the form from separable partials for future extensibility: `_amount_options` (preset tiles + "other amount" custom field), `_frequency_toggle` (one-time/recurring → `frequency` enum), `_donor_fields` (name + email), `_display_preference` (full name / first name only / anonymous), `_dedication_message` (optional textarea behind a "want to add a note?" checkbox reveal)
-- [ ] Visually flag the `featured` donation option (e.g. "🧡 most chosen" badge), matching the reference
-- [ ] Validation: required fields, amount > 0, valid email format — server-side with inline error display
-- [ ] **Tests**: system spec opening the modal, selecting/entering an amount, filling donor details, and asserting validation errors show for missing/invalid input
-- [ ] Commit + push
+- [x] `DonationsController#new` / `#create`, rendered as a Turbo Frame modal opened/closed via a Stimulus `modal_controller`
+- [x] Build the form from separable partials for future extensibility: `_amount_options` (preset tiles + "other amount" custom field), `_frequency_toggle` (one-time/recurring → `frequency` enum), `_donor_fields` (name + email), `_display_preference` (full name / first name only / anonymous), `_dedication_message` (optional textarea behind a "want to add a note?" checkbox reveal)
+- [x] Visually flag the `featured` donation option (e.g. "🧡 most chosen" badge), matching the reference
+- [x] Validation: required fields, amount > 0, valid email format — server-side with inline error display, in Hebrew (added `config/locales/he.yml` + set it as the default locale, since the rest of the UI is Hebrew/RTL)
+- [x] **Tests**: system spec opening the modal, selecting/entering an amount, filling donor details, and asserting validation errors show for missing/invalid input
+- [x] Commit + push
 
 ## 7. Donation creation & live progress update
 - [ ] `DonationsController#create`: build the Donation in `pending` status, associate to its Campaign, persist

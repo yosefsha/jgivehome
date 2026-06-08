@@ -1,0 +1,30 @@
+<div class="p-6" dir="rtl" data-controller="donation-form">
+  <div class="flex items-center justify-between mb-4">
+    <h2 class="text-xl font-bold text-gray-900">תרומה ל<%= campaign.title %></h2>
+    <button type="button" data-action="modal#close" aria-label="סגירה" class="text-2xl leading-none text-gray-400 hover:text-gray-600">&times;</button>
+  </div>
+
+  <%= form_with model: donation, url: campaign_donations_path(campaign),
+        data: { action: "turbo:submit-end->donation-form#handleSubmitEnd" } do |form| %>
+    <% if donation.errors.any? %>
+      <div class="mb-4 rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+        <p class="mb-1 font-semibold">לא ניתן היה לשמור את התרומה:</p>
+        <ul class="list-inside list-disc space-y-0.5">
+          <% donation.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= render "amount_options", form: form, campaign: campaign, donation: donation %>
+    <%= render "frequency_toggle", form: form %>
+    <%= render "donor_fields", form: form %>
+    <%= render "display_preference", form: form %>
+    <%= render "dedication_message", form: form %>
+
+    <div class="mt-6">
+      <%= form.submit "המשך לתרומה", class: "w-full cursor-pointer rounded-md bg-orange-500 px-6 py-3 font-semibold text-white hover:bg-orange-600" %>
+    </div>
+  <% end %>
+</div>

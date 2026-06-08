@@ -1,0 +1,30 @@
+<div class="mb-5">
+  <p class="mb-2 block text-sm font-medium text-gray-700">בחרו סכום לתרומה</p>
+
+  <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
+    <% campaign.donation_options.order(:amount).each do |option| %>
+      <label class="relative flex cursor-pointer flex-col items-center justify-center rounded-lg border border-gray-300 p-3 has-[:checked]:border-orange-500 has-[:checked]:ring-2 has-[:checked]:ring-orange-200">
+        <%= radio_button_tag "donation[amount]", option.amount, donation.amount == option.amount,
+              data: { action: "donation-form#selectPreset" } %>
+        <span class="mt-1 font-bold text-gray-900"><%= number_to_currency(option.amount, unit: "₪", format: "%n %u", precision: 0) %></span>
+        <span class="text-xs text-gray-500"><%= option.label %></span>
+        <% if option.featured? %>
+          <span class="pointer-events-none absolute -top-2 -right-2 rounded-full bg-orange-500 px-2 py-0.5 text-xs text-white">🧡 הכי נבחר</span>
+        <% end %>
+      </label>
+    <% end %>
+
+    <label class="relative flex cursor-pointer flex-col items-center justify-center rounded-lg border border-gray-300 p-3 has-[:checked]:border-orange-500 has-[:checked]:ring-2 has-[:checked]:ring-orange-200">
+      <%= radio_button_tag "donation[amount]", "", false, id: "donation_amount_other",
+            data: { action: "donation-form#selectCustom" } %>
+      <span class="mt-1 font-bold text-gray-900">סכום אחר</span>
+    </label>
+  </div>
+
+  <div class="mt-3" data-donation-form-target="customAmountWrapper" hidden>
+    <%= label_tag "donation_custom_amount", "סכום בש״ח", class: "mb-1 block text-sm font-medium text-gray-700" %>
+    <%= number_field_tag "donation[custom_amount]", nil, min: 1, step: "0.01", placeholder: "לדוגמה 250",
+          class: "w-full rounded-md border-gray-300 focus:border-orange-500 focus:ring-orange-500",
+          data: { donation_form_target: "customAmountInput" } %>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="mb-5">
+  <p class="mb-2 block text-sm font-medium text-gray-700">אני רוצה שבעמוד הפרויקט יופיע:</p>
+
+  <div class="space-y-1">
+    <% { full_name: "השם המלא שלי", first_name: "השם הפרטי שלי בלבד", anonymous: "אנונימי" }.each do |value, label| %>
+      <label class="flex cursor-pointer items-center gap-2">
+        <%= form.radio_button :display_preference, value, checked: form.object.display_preference == value.to_s %>
+        <span class="text-sm text-gray-700"><%= label %></span>
+      </label>
+    <% end %>
+  </div>
+</div>

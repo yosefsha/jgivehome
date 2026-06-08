@@ -6,7 +6,7 @@ RSpec.describe "db:seed" do
 
     expect(Campaign.count).to eq(2)
     expect(DonationOption.count).to eq(8)
-    expect(Donation.count).to eq(10)
+    expect(Donation.count).to eq(13)
 
     expect(Campaign.exists?(slug: "orange-garden")).to be true
     expect(Campaign.exists?(slug: "neighborhood-library")).to be true

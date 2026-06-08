@@ -24,7 +24,18 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <main class="container mx-auto mt-28 px-5 flex flex-col">
+      <% if notice %>
+        <p dir="rtl" class="mb-4 rounded-md border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800" data-turbo-cache="false">
+          <%= notice %>
+        </p>
+      <% end %>
+      <% if alert %>
+        <p dir="rtl" class="mb-4 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800" data-turbo-cache="false">
+          <%= alert %>
+        </p>
+      <% end %>
+
       <%= yield %>
     </main>
   </body>

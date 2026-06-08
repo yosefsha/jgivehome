@@ -1,0 +1,19 @@
+he:
+  activerecord:
+    models:
+      donation: תרומה
+      campaign: קמפיין
+    attributes:
+      donation:
+        amount: סכום
+        donor_name: שם מלא
+        donor_email: אימייל
+        frequency: תדירות
+        display_preference: העדפת הצגה
+        dedication_message: הקדשה
+    errors:
+      messages:
+        blank: "לא יכול להישאר ריק"
+        invalid: "אינו תקין"
+        not_a_number: "אינו מספר"
+        greater_than: "חייב להיות גדול מ-%{count}"

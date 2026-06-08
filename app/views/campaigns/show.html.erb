@@ -23,10 +23,19 @@
         </div>
       </div>
 
-      <div class="mt-6">
-        <button type="button" class="px-6 py-3 rounded-md bg-orange-500 text-white font-semibold hover:bg-orange-600">
+      <div class="mt-6" data-controller="modal">
+        <button type="button"
+                data-action="modal#open"
+                data-modal-src-param="<%= new_campaign_donation_path(@campaign) %>"
+                class="px-6 py-3 rounded-md bg-orange-500 text-white font-semibold hover:bg-orange-600">
           לתרומה
         </button>
+
+        <dialog data-modal-target="dialog"
+                data-action="click->modal#closeBackground"
+                class="w-full max-w-lg rounded-lg p-0 backdrop:bg-black/50">
+          <%= turbo_frame_tag "donation_modal", data: { modal_target: "frame" } %>
+        </dialog>
       </div>
     </div>
   </div>
