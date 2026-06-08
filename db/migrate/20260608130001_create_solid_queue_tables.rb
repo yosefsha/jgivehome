@@ -1,5 +1,25 @@
 class CreateSolidQueueTables < ActiveRecord::Migration[8.1]
+  TABLE_NAMES = %w[
+    solid_queue_jobs
+    solid_queue_scheduled_executions
+    solid_queue_ready_executions
+    solid_queue_claimed_executions
+    solid_queue_blocked_executions
+    solid_queue_failed_executions
+    solid_queue_pauses
+    solid_queue_processes
+    solid_queue_semaphores
+    solid_queue_recurring_executions
+    solid_queue_recurring_tasks
+  ].freeze
+
   def change
+    # Drop-and-recreate rather than detect-and-skip — the production database
+    # already had some of these tables (with an unknown/possibly-stale schema)
+    # from an earlier deploy, before the single-database consolidation in
+    # ADR-001. They hold pure queue/job state — safe to drop and recreate fresh.
+    TABLE_NAMES.each { |name| drop_table name, if_exists: true }
+
     create_table :solid_queue_jobs do |t|
       t.string :queue_name, null: false
       t.string :class_name, null: false
