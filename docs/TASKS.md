@@ -30,11 +30,11 @@ Strategy: get a minimal app deployed to Render *first* (hello-world + basic test
 - [x] Commit + push (deploy auto-updates; run `rails db:migrate` against production)
 
 ## 3. Seed data
-- [ ] Download a copy of הגן הכתום's cover image into `public/images/`
-- [ ] `db/seeds.rb`: seed הגן הכתום with its real title, Hebrew story, cover image path, goal ₪5,000,000, and its 5 real donation options (₪180 "נטיעת עץ" … ₪5,000 "בוני הגן הכתום", ₪360 marked `featured`)
-- [ ] Seed a second, simpler fictional campaign with its own donation options
-- [ ] Seed 8–12 Donation records spread across both campaigns, varying frequency/status/display_preference/dedication so the page and "Recent donations" tab show realistic variety
-- [ ] **Tests**: a seed smoke-test (e.g. a spec or rake task assertion that `db:seed` runs cleanly and produces the expected campaign/donation counts) — optional but cheap insurance against a broken demo on first load
+- [x] Download a copy of הגן הכתום's cover image into `public/images/` (added as `background_orange.jpg`)
+- [x] `db/seeds.rb`: seed הגן הכתום with its real title, Hebrew story, cover image path, goal ₪5,000,000, and its 5 real donation options (₪180 "נטיעת עץ" … ₪5,000 "בוני הגן הכתום", ₪360 marked `featured`)
+- [x] Seed a second, simpler fictional campaign with its own donation options (`ספריית השכונה` — neighborhood library)
+- [x] Seed 8–12 Donation records spread across both campaigns, varying frequency/status/display_preference/dedication so the page and "Recent donations" tab show realistic variety (10 seeded)
+- [x] **Tests**: a seed smoke-test (e.g. a spec or rake task assertion that `db:seed` runs cleanly and produces the expected campaign/donation counts) — optional but cheap insurance against a broken demo on first load
 - [ ] Commit + push; run `rails db:seed` against production
 
 ## 4. Campaign show page — header
