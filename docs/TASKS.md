@@ -21,12 +21,12 @@ Strategy: get a minimal app deployed to Render *first* (hello-world + basic test
 - [x] Commit: deployment config (`render.yaml` or notes on dashboard config)
 
 ## 2. Data model
-- [ ] `Campaign`: title, story (text), cover_image_url, goal_amount (decimal), slug — migration + model
-- [ ] `DonationOption`: belongs_to :campaign; amount (decimal), label (string), featured (boolean, default false) — migration + model + association
-- [ ] `Donation`: belongs_to :campaign; amount (decimal), frequency (enum: one_time/monthly), status (enum: pending/paid/cancelled, default: pending), donor_name, donor_email, display_preference (enum: full_name/first_name/anonymous), dedication_message (text, optional) — migration + model + association
-- [ ] Validations: presence on required fields, numericality on amounts (> 0), email format on donor_email
-- [ ] `Campaign#raised_amount` / `#progress_percentage`: sum pending + paid donations against the goal. Add a short code comment explaining *why* pending counts (no payment integration exists in this demo, so excluding pending would mean progress never visibly moves — documented further in the README)
-- [ ] **Tests**: FactoryBot factories for Campaign, DonationOption, Donation; model specs covering validations, enum behavior, and `raised_amount`/`progress_percentage` (including that pending counts toward progress)
+- [x] `Campaign`: title, story (text), cover_image_url, goal_amount (decimal), slug — migration + model
+- [x] `DonationOption`: belongs_to :campaign; amount (decimal), label (string), featured (boolean, default false) — migration + model + association
+- [x] `Donation`: belongs_to :campaign; amount (decimal), frequency (enum: one_time/monthly), status (enum: pending/paid/cancelled, default: pending), donor_name, donor_email, display_preference (enum: full_name/first_name/anonymous), dedication_message (text, optional) — migration + model + association
+- [x] Validations: presence on required fields, numericality on amounts (> 0), email format on donor_email
+- [x] `Campaign#raised_amount` / `#progress_percentage`: sum pending + paid donations against the goal. Add a short code comment explaining *why* pending counts (no payment integration exists in this demo, so excluding pending would mean progress never visibly moves — documented further in the README)
+- [x] **Tests**: FactoryBot factories for Campaign, DonationOption, Donation; model specs covering validations, enum behavior, and `raised_amount`/`progress_percentage` (including that pending counts toward progress)
 - [ ] Commit + push (deploy auto-updates; run `rails db:migrate` against production)
 
 ## 3. Seed data
