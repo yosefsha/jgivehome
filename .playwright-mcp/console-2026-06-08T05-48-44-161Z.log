@@ -45,3 +45,11 @@
 [ 5367738ms] [WARNING] Error CL001: Multiple Clarity tags detected. @ https://www.jgive.com/new/he/ils/donation-targets/159183:3
 [ 6090255ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_CLOSED @ https://www.jgive.com/graphql:0
 [ 7235339ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_CLOSED @ https://www.jgive.com/graphql:0
+[ 7537391ms] Uncaught TypeError: Cannot read properties of undefined (reading 'unshift')
+    at <anonymous> (https://www.clarity.ms/tag/s9383nbcj6?ref=gtm:0:325)
+    at <anonymous> (https://www.clarity.ms/tag/s9383nbcj6?ref=gtm:0:370)
+[ 7537395ms] [WARNING] Error CL001: Multiple Clarity tags detected. @ https://www.jgive.com/new/he/ils/donation-targets/159183:3
+[ 7717559ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_CLOSED @ https://www.jgive.com/graphql:0
+[ 9614319ms] [ERROR] Failed to load resource: net::ERR_TIMED_OUT @ https://bam.nr-data.net/events/1/1a950892da?a=21923285&v=1.316.0&to=JVZdTEdYXltQFEtQVgpVUVlWXB1eWwIBTg%3D%3D&rst=9577590&ck=0&s=ae0ef1dceb6a2904&ref=https://www.jgive.com/new/he/ils/donation-targets/159183/donate/amount&ptid=13b2952e43a69be3:0
+[ 9642662ms] [ERROR] Failed to load resource: net::ERR_TIMED_OUT @ https://bam.nr-data.net/jserrors/1/1a950892da?a=21923285&v=1.316.0&to=JVZdTEdYXltQFEtQVgpVUVlWXB1eWwIBTg%3D%3D&rst=9577588&ck=0&s=ae0ef1dceb6a2904&ref=https://www.jgive.com/new/he/ils/donation-targets/159183/donate/amount&ptid=13b2952e43a69be3:0
+[10501365ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_CLOSED @ https://www.jgive.com/graphql:0
