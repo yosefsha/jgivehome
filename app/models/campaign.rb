@@ -25,4 +25,14 @@ class Campaign < ApplicationRecord
 
     (raised_amount / goal_amount * 100).round(1)
   end
+
+  # Converts a youtube.com/watch or youtu.be link into YouTube's embeddable
+  # iframe URL, so the banner can play the video in place rather than just
+  # linking out to YouTube.
+  def video_embed_url
+    return if video_url.blank?
+
+    video_id = video_url[/(?:youtu\.be\/|[?&]v=)([\w-]{11})/, 1]
+    "https://www.youtube.com/embed/#{video_id}?autoplay=1&rel=0" if video_id
+  end
 end

@@ -2,7 +2,7 @@
   <%= turbo_stream_from @campaign %>
 
   <div class="rounded-lg overflow-hidden shadow">
-    <%= render "media_banner", image_url: @campaign.cover_image_url, image_alt: @campaign.title, video_url: @campaign.video_url %>
+    <%= render "media_banner", image_url: @campaign.cover_image_url, image_alt: @campaign.title, video_embed_url: @campaign.video_embed_url %>
 
     <div class="bg-white p-6">
       <h1 class="text-3xl font-bold text-gray-900"><%= @campaign.title %></h1>
