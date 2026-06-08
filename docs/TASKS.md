@@ -68,11 +68,11 @@ Strategy: get a minimal app deployed to Render *first* (hello-world + basic test
 - [x] Commit + push
 
 ## 8. Styling pass
-- [ ] RTL check across the page (`dir="rtl"`, Tailwind logical utilities `ms-`/`me-`/`ps-`/`pe-`/`rtl:`)
-- [ ] Compare against the reference page; adjust spacing/color/type to "clearly resemble" without chasing pixel-perfection — note anything you deliberately changed and why (per the brief's invitation to improve things that strike you as off)
-- [ ] Responsive check at mobile width for header, tabs, and modal
-- [ ] **Tests**: none new — this is a visual pass; rerun the existing system specs to confirm styling changes haven't broken any selectors/assertions
-- [ ] Commit + push
+- [x] RTL check across the page (`dir="rtl"`, Tailwind logical utilities `ms-`/`me-`/`ps-`/`pe-`/`rtl:`) — audited every view for physical-direction utilities (`ml-`/`mr-`/`pl-`/`pr-`/`text-left`/`text-right`); none found, the codebase already uses logical properties consistently
+- [x] Compare against the reference page; adjust spacing/color/type to "clearly resemble" without chasing pixel-perfection — overall layout (cover image, title, progress bar, raised/goal amounts, donate button, tabs) already closely mirrors the reference. **Bug found & fixed**: donation form text inputs/textarea (`donor_name`, `donor_email`, `custom_amount`, `dedication_message`) were missing the `border` width utility — `border-gray-300` alone sets a color with no visible border, so fields looked borderless/floating. Added `border` alongside the color class in all four partials.
+- [x] Responsive check at mobile width for header, tabs, and modal — checked at 390px: header stacks cleanly, tabs wrap to two rows without overlap, and the modal renders full-width and scrollable with all fields legible
+- [x] **Tests**: none new — this is a visual pass; reran the existing system specs to confirm styling changes haven't broken any selectors/assertions (all green)
+- [x] Commit + push
 
 ## 9. README
 - [ ] How to run locally: Ruby/Rails/Postgres versions, `bundle install`, `rails db:setup`, `bin/rails server`
