@@ -17,8 +17,8 @@ Strategy: get a minimal app deployed to Render *first* (hello-world + basic test
 - [x] Write one basic request spec (e.g. `GET / returns 200 and renders the hello text`) with orientation comments explaining how `bundle exec rspec` discovers and runs specs, the role of `rails_helper`/`spec_helper`, and the `describe`/`it`/`expect` structure — a one-time learning aid, not boilerplate to repeat per file
 - [x] Commit: scaffold boots locally, test passes (`bundle exec rspec` green)
 - [x] Set up Render: web service + managed Postgres, `RAILS_MASTER_KEY` as secret env var, confirm build step runs `assets:precompile`/Tailwind build (`render.yaml` blueprint added; consolidated solid_cache/queue/cable onto a single Postgres database for the free-tier single-DB setup)
-- [ ] Deploy hello-world to Render; confirm the live URL serves the page — this proves the whole pipeline before any real feature work lands
-- [ ] Commit: deployment config (`render.yaml` or notes on dashboard config)
+- [x] Deploy hello-world to Render; confirm the live URL serves the page — this proves the whole pipeline before any real feature work lands
+- [x] Commit: deployment config (`render.yaml` or notes on dashboard config)
 
 ## 2. Data model
 - [ ] `Campaign`: title, story (text), cover_image_url, goal_amount (decimal), slug — migration + model
