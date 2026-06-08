@@ -21,6 +21,23 @@ in `docs/adr/`:
 * [ADR-007: Campaign cover images are static files in `public/images/`, not Active Storage](docs/adr/ADR-007-self-hosted-cover-image.md)
 * [ADR-008: Render all six reference tabs, with "coming soon" placeholders for out-of-scope ones](docs/adr/ADR-008-full-tab-bar-with-placeholders.md)
 
+A few smaller decisions didn't earn a dedicated ADR — they're closer to
+idiomatic Rails defaults than genuine forks in the road — but are worth a line:
+
+* **Hotwire (Turbo + Stimulus) over a client-side SPA** for live campaign
+  updates — Rails 8's default stack already gives a websocket-backed,
+  server-rendered way to broadcast a re-rendered partial on donation; a
+  separate JSON API + SPA would mean a second frontend build/deploy and
+  duplicated rendering/validation logic for a one-page demo.
+* **`DonationOption` as its own model**, not hardcoded view constants — each
+  campaign offers its own set of preset amounts with per-amount labels and a
+  `featured` flag, and the brief seeds two campaigns with different tiers, so
+  this needed to be data, not code (see the comment on `DonationOption`).
+* **Rails `enum`s for `frequency`/`display_preference`** rather than free-text
+  strings or lookup tables — both are small, fixed, code-meaningful sets that
+  views/broadcasts branch on directly; an integer-backed enum is the
+  idiomatic, typo-proof fit (see the comment on `Donation`).
+
 ## Running locally
 
 Requirements: Ruby 3.3.11, PostgreSQL, and a `config/master.key` (ask for it,
