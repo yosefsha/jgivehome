@@ -14,17 +14,27 @@ export default class extends Controller {
     this.playingValue = true
   }
 
+  close() {
+    this.playingValue = false
+  }
+
   playingValueChanged(playing) {
     this.element.classList.toggle("video-embed--playing", playing)
 
-    if (playing && this.frameTarget.childElementCount === 0) {
-      const iframe = document.createElement("iframe")
-      iframe.src = this.embedUrlValue
-      iframe.title = "סרטון הקמפיין"
-      iframe.allow = "autoplay; encrypted-media; picture-in-picture"
-      iframe.allowFullscreen = true
+    if (playing) {
+      if (this.frameTarget.childElementCount === 0) {
+        const iframe = document.createElement("iframe")
+        iframe.src = this.embedUrlValue
+        iframe.title = "סרטון הקמפיין"
+        iframe.allow = "autoplay; encrypted-media; picture-in-picture"
+        iframe.allowFullscreen = true
 
-      this.frameTarget.appendChild(iframe)
+        this.frameTarget.appendChild(iframe)
+      }
+    } else {
+      // Tear the iframe down on close so playback (and audio) actually stops —
+      // it gets recreated fresh the next time the visitor presses play.
+      this.frameTarget.replaceChildren()
     }
   }
 }

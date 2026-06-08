@@ -19,9 +19,13 @@
       </span>
     </button>
 
-    <div class="video-embed__player">
-      <div class="video-embed__backdrop"></div>
-      <div class="video-embed__frame" data-video-embed-target="frame"></div>
+    <div class="video-embed__player" data-action="keydown.esc@window->video-embed#close">
+      <div class="video-embed__backdrop" data-action="click->video-embed#close"></div>
+      <div class="video-embed__stage">
+        <button type="button" data-action="video-embed#close" aria-label="סגירה"
+                class="video-embed__close text-2xl leading-none text-white/80 hover:text-white">&times;</button>
+        <div class="video-embed__frame" data-video-embed-target="frame"></div>
+      </div>
     </div>
   <% end %>
 </div>

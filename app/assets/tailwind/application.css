@@ -24,10 +24,22 @@
   background-color: rgb(17 24 39 / 0.7);
 }
 
-.video-embed__frame {
+.video-embed__stage {
   position: relative;
   width: 100%;
   max-width: 48rem;
+}
+
+.video-embed__close {
+  position: absolute;
+  top: -2.25rem;
+  inset-inline-end: 0;
+  z-index: 1;
+}
+
+.video-embed__frame {
+  position: relative;
+  width: 100%;
   aspect-ratio: 16 / 9;
 }
 
